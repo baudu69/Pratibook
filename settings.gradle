@@ -1,0 +1,2 @@
+rootProject.name = 'pratibook'
+include 'pratibook-api', 'pratibook-ui'
