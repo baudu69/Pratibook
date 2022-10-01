@@ -5,17 +5,22 @@ import fr.inextenso.pratibook.pratibookapi.dto.JwtRequest;
 import fr.inextenso.pratibook.pratibookapi.dto.JwtResponse;
 import fr.inextenso.pratibook.pratibookapi.dto.UserDTO;
 import fr.inextenso.pratibook.pratibookapi.service.user.JwtUserDetailService;
+import fr.inextenso.pratibook.pratibookapi.service.user.UserDetails;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.DisabledException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.GrantedAuthority;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
+
 @RestController
+@RequestMapping("/api/auth")
 public class JwtAuthController {
 	private final AuthenticationManager authenticationManager;
 
@@ -32,17 +37,19 @@ public class JwtAuthController {
 	@PostMapping(value = "/authenticate")
 	public ResponseEntity<?> createAuthenticationToken(@RequestBody JwtRequest authenticationRequest) throws Exception {
 
-		authenticate(authenticationRequest.username(), authenticationRequest.password());
+		authenticate(authenticationRequest.email(), authenticationRequest.password());
 
-		final UserDetails userDetails = userDetailsService.loadUserByUsername(authenticationRequest.username());
+		final UserDetails userDetails = userDetailsService.loadUserByUsername(authenticationRequest.email());
 
 		final String token = jwtTokenUtil.generateToken(userDetails);
 
-		return ResponseEntity.ok(new JwtResponse(token));
+		final List<String> roles = userDetails.getAuthorities().stream().map(GrantedAuthority::getAuthority).toList();
+
+		return ResponseEntity.ok(new JwtResponse(token, roles));
 	}
 
 	@PostMapping(value = "/register")
-	public ResponseEntity<?> saveUser(@RequestBody UserDTO user) throws Exception {
+	public ResponseEntity<?> saveUser(@RequestBody UserDTO user) {
 		return ResponseEntity.ok(userDetailsService.save(user));
 	}
 

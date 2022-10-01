@@ -45,7 +45,7 @@ public class WebSecurityConfig {
 
 	@Bean
 	public WebSecurityCustomizer webSecurityCustomizer() {
-		return (web) -> web.ignoring().antMatchers("/register", "/authenticate");
+		return (web) -> web.ignoring().antMatchers("/api/auth/**");
 	}
 
 	@Bean

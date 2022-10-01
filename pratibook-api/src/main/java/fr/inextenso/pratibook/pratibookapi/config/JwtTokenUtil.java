@@ -1,11 +1,10 @@
 package fr.inextenso.pratibook.pratibookapi.config;
 
+import fr.inextenso.pratibook.pratibookapi.service.user.UserDetails;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.impl.DefaultJwtParserBuilder;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
 
 import java.io.Serial;
@@ -27,7 +26,7 @@ public class JwtTokenUtil implements Serializable {
 		this.cryptoConfig = cryptoConfig;
 	}
 
-	//retrieve username from jwt token
+	//retrieve email from jwt token
 	public String getUsernameFromToken(String token) {
 		return getClaimFromToken(token, Claims::getSubject);
 	}

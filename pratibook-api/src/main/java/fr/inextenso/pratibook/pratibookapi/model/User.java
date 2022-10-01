@@ -3,27 +3,66 @@ package fr.inextenso.pratibook.pratibookapi.model;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
-import java.util.Objects;
+import java.util.*;
 
 @Entity
-@Table(name = "user")
+@Table(name = "utilisateur")
 public class User {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int id;
-	@Column
-	private String username;
-	@Column
-	@JsonIgnore
+	@Column(name = "id_user", nullable = false)
+	private Integer id;
+
+	@Column(name = "email", length = 50)
+	private String email;
+
+	@Column(name = "password", length = 100)
 	private String password;
 
-	public String getUsername() {
-		return username;
+	@Column(name = "nom", length = 50)
+	private String nom;
+
+	@Column(name = "prenom", length = 50)
+	private String prenom;
+
+	@Column(name = "adresse", length = 50)
+	private String adresse;
+
+	@Column(name = "code_postal", length = 5)
+	private String codePostal;
+
+	@Column(name = "ville", length = 50)
+	private String ville;
+
+	@ManyToMany(fetch = FetchType.EAGER)
+	@JoinTable(name = "users_roles",
+			joinColumns = @JoinColumn(name = "user_id"),
+			inverseJoinColumns = @JoinColumn(name = "role_id"))
+	private Set<Role> roles = new LinkedHashSet<>();
+
+	public Set<Role> getRoles() {
+		return roles;
 	}
 
-	public void setUsername(String username) {
-		this.username = username;
+	public void setRoles(Set<Role> roles) {
+		this.roles = roles;
+	}
+
+	public Integer getId() {
+		return id;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
 	}
 
 	public String getPassword() {
@@ -34,16 +73,44 @@ public class User {
 		this.password = password;
 	}
 
-	@Override
-	public boolean equals(Object o) {
-		if (this == o) return true;
-		if (o == null || getClass() != o.getClass()) return false;
-		User user = (User) o;
-		return id == user.id;
+	public String getNom() {
+		return nom;
 	}
 
-	@Override
-	public int hashCode() {
-		return Objects.hash(id);
+	public void setNom(String nom) {
+		this.nom = nom;
 	}
+
+	public String getPrenom() {
+		return prenom;
+	}
+
+	public void setPrenom(String prenom) {
+		this.prenom = prenom;
+	}
+
+	public String getAdresse() {
+		return adresse;
+	}
+
+	public void setAdresse(String adresse) {
+		this.adresse = adresse;
+	}
+
+	public String getCodePostal() {
+		return codePostal;
+	}
+
+	public void setCodePostal(String codePostal) {
+		this.codePostal = codePostal;
+	}
+
+	public String getVille() {
+		return ville;
+	}
+
+	public void setVille(String ville) {
+		this.ville = ville;
+	}
+
 }
