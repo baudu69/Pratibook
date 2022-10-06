@@ -1,12 +1,12 @@
-package fr.inextenso.pratibook.pratibookapi.ressource;
+package fr.inextenso.pratibook.ressource;
 
-import fr.inextenso.pratibook.pratibookapi.config.CryptoConfig;
-import fr.inextenso.pratibook.pratibookapi.config.JwtTokenUtil;
-import fr.inextenso.pratibook.pratibookapi.dto.JwtRequest;
-import fr.inextenso.pratibook.pratibookapi.dto.JwtResponse;
-import fr.inextenso.pratibook.pratibookapi.dto.UserDTO;
-import fr.inextenso.pratibook.pratibookapi.service.user.JwtUserDetailService;
-import fr.inextenso.pratibook.pratibookapi.service.user.UserDetails;
+import fr.inextenso.pratibook.config.CryptoConfig;
+import fr.inextenso.pratibook.config.JwtTokenUtil;
+import fr.inextenso.pratibook.dto.JwtRequest;
+import fr.inextenso.pratibook.dto.JwtResponse;
+import fr.inextenso.pratibook.dto.UserDTO;
+import fr.inextenso.pratibook.user.JwtUserDetailService;
+import fr.inextenso.pratibook.user.UserDetails;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;

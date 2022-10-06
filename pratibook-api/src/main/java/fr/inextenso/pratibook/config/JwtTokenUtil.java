@@ -1,6 +1,6 @@
-package fr.inextenso.pratibook.pratibookapi.config;
+package fr.inextenso.pratibook.config;
 
-import fr.inextenso.pratibook.pratibookapi.service.user.UserDetails;
+import fr.inextenso.pratibook.user.UserDetails;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;

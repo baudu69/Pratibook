@@ -1,6 +1,4 @@
-package fr.inextenso.pratibook.pratibookapi.model;
-
-import com.fasterxml.jackson.annotation.JsonIgnore;
+package fr.inextenso.pratibook.model;
 
 import javax.persistence.*;
 import java.util.*;

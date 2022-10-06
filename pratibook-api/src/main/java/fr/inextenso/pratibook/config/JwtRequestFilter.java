@@ -1,7 +1,7 @@
-package fr.inextenso.pratibook.pratibookapi.config;
+package fr.inextenso.pratibook.config;
 
-import fr.inextenso.pratibook.pratibookapi.service.user.JwtUserDetailService;
-import fr.inextenso.pratibook.pratibookapi.service.user.UserDetails;
+import fr.inextenso.pratibook.user.JwtUserDetailService;
+import fr.inextenso.pratibook.user.UserDetails;
 import io.jsonwebtoken.ExpiredJwtException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;

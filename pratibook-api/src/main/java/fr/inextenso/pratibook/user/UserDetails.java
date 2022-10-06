@@ -1,6 +1,6 @@
-package fr.inextenso.pratibook.pratibookapi.service.user;
+package fr.inextenso.pratibook.user;
 
-import fr.inextenso.pratibook.pratibookapi.model.User;
+import fr.inextenso.pratibook.model.User;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 

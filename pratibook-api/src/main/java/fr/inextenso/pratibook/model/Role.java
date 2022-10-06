@@ -1,4 +1,4 @@
-package fr.inextenso.pratibook.pratibookapi.model;
+package fr.inextenso.pratibook.model;
 
 import javax.persistence.*;
 

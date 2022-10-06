@@ -1,14 +1,12 @@
-package fr.inextenso.pratibook.pratibookapi.service.user;
+package fr.inextenso.pratibook.user;
 
-import fr.inextenso.pratibook.pratibookapi.dto.UserDTO;
-import fr.inextenso.pratibook.pratibookapi.repository.UserRepository;
-import org.springframework.security.core.userdetails.User;
+import fr.inextenso.pratibook.dto.UserDTO;
+import fr.inextenso.pratibook.model.User;
+import fr.inextenso.pratibook.repository.UserRepository;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-
-import java.util.ArrayList;
 
 @Service
 public class JwtUserDetailService implements UserDetailsService {
@@ -27,8 +25,8 @@ public class JwtUserDetailService implements UserDetailsService {
 				.orElseThrow(() -> new UsernameNotFoundException("User not found with email: " + username)));
 	}
 
-	public fr.inextenso.pratibook.pratibookapi.model.User save(UserDTO user) {
-		fr.inextenso.pratibook.pratibookapi.model.User newUser = new fr.inextenso.pratibook.pratibookapi.model.User();
+	public User save(UserDTO user) {
+		User newUser = new User();
 		newUser.setEmail(user.email());
 		newUser.setPassword(passwordEncoder.encode(user.password()));
 		newUser.setNom(user.nom());

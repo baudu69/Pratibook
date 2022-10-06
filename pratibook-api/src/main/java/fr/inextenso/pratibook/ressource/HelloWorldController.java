@@ -1,4 +1,4 @@
-package fr.inextenso.pratibook.pratibookapi.ressource;
+package fr.inextenso.pratibook.ressource;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

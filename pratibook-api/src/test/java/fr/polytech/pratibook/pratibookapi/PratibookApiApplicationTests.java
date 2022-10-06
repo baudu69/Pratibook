@@ -1,4 +1,4 @@
-package fr.inextenso.pratibook.pratibookapi;
+package fr.polytech.pratibook.pratibookapi;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

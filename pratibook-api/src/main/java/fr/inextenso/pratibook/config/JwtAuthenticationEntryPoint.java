@@ -1,4 +1,4 @@
-package fr.inextenso.pratibook.pratibookapi.config;
+package fr.inextenso.pratibook.config;
 
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.web.AuthenticationEntryPoint;

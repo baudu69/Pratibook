@@ -1,4 +1,4 @@
-package fr.inextenso.pratibook.pratibookapi.dto;
+package fr.inextenso.pratibook.dto;
 
 public record JwtRequest(String email, String password) {
 }

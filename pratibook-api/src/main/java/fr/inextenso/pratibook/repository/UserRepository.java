@@ -1,6 +1,6 @@
-package fr.inextenso.pratibook.pratibookapi.repository;
+package fr.inextenso.pratibook.repository;
 
-import fr.inextenso.pratibook.pratibookapi.model.User;
+import fr.inextenso.pratibook.model.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.Optional;
