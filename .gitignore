@@ -4,3 +4,6 @@
 /pratibook-api/gradle/wrapper/gradle-wrapper.jar
 /.gradle/
 /gradle/wrapper/gradle-wrapper.jar
+/pratibook-ui/.angular/
+/pratibook-ui/.gradle/
+/pratibook-ui/build/
