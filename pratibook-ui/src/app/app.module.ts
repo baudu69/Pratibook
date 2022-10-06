@@ -7,7 +7,8 @@ import {appRoutes} from "./app.route";
 import { AccueilComponent } from './accueil/accueil.component';
 import {NavbarComponent} from "./layout/navbar/navbar.component";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
-import {HttpClientModule} from "@angular/common/http";
+import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
+import {JwtInterceptor} from "./shared/interceptors/jwt.interceptor";
 
 @NgModule({
   declarations: [
@@ -21,7 +22,13 @@ import {HttpClientModule} from "@angular/common/http";
     HttpClientModule,
     RouterModule.forRoot(appRoutes)
   ],
-  providers: [],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: JwtInterceptor,
+      multi: true
+    },
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
