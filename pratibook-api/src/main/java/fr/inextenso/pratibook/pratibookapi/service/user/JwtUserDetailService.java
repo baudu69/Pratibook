@@ -31,6 +31,10 @@ public class JwtUserDetailService implements UserDetailsService {
 		fr.inextenso.pratibook.pratibookapi.model.User newUser = new fr.inextenso.pratibook.pratibookapi.model.User();
 		newUser.setEmail(user.email());
 		newUser.setPassword(passwordEncoder.encode(user.password()));
+		newUser.setNom(user.nom());
+		newUser.setPrenom(user.prenom());
+		newUser.setAdresse(user.adresse());
+		newUser.setCodePostal(user.codePostal());
 		return userDao.save(newUser);
 	}
 }

@@ -1,5 +1,6 @@
 package fr.inextenso.pratibook.pratibookapi.ressource;
 
+import fr.inextenso.pratibook.pratibookapi.config.CryptoConfig;
 import fr.inextenso.pratibook.pratibookapi.config.JwtTokenUtil;
 import fr.inextenso.pratibook.pratibookapi.dto.JwtRequest;
 import fr.inextenso.pratibook.pratibookapi.dto.JwtResponse;
@@ -17,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 @RestController
@@ -27,11 +29,13 @@ public class JwtAuthController {
 	private final JwtTokenUtil jwtTokenUtil;
 
 	private final JwtUserDetailService userDetailsService;
+	private final CryptoConfig cryptoConfig;
 
-	public JwtAuthController(AuthenticationManager authenticationManager, JwtTokenUtil jwtTokenUtil, JwtUserDetailService userDetailsService) {
+	public JwtAuthController(AuthenticationManager authenticationManager, JwtTokenUtil jwtTokenUtil, JwtUserDetailService userDetailsService, CryptoConfig cryptoConfig) {
 		this.authenticationManager = authenticationManager;
 		this.jwtTokenUtil = jwtTokenUtil;
 		this.userDetailsService = userDetailsService;
+		this.cryptoConfig = cryptoConfig;
 	}
 
 	@PostMapping(value = "/authenticate")
@@ -44,8 +48,9 @@ public class JwtAuthController {
 		final String token = jwtTokenUtil.generateToken(userDetails);
 
 		final List<String> roles = userDetails.getAuthorities().stream().map(GrantedAuthority::getAuthority).toList();
+		final LocalDateTime tokenExp = LocalDateTime.now().plusSeconds(this.cryptoConfig.getExp());
 
-		return ResponseEntity.ok(new JwtResponse(token, roles));
+		return ResponseEntity.ok(new JwtResponse(token, roles, tokenExp));
 	}
 
 	@PostMapping(value = "/register")

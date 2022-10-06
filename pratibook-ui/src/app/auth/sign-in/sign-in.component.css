@@ -1,0 +1,30 @@
+div {
+  display: flex;
+  justify-content: center;
+}
+
+h1 {
+  text-align: center;
+}
+
+ng-form {
+  display: flex;
+  flex-direction: column;
+  width: 30%;
+}
+
+@media (max-width: 1000px) {
+  ng-form {
+    width: 50%;
+  }
+}
+
+@media (max-width: 600px) {
+  ng-form {
+    width: 70%;
+  }
+}
+
+mat-form-field {
+  width: 100%;
+}

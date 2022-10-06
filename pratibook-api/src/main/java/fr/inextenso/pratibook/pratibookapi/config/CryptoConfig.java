@@ -10,6 +10,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 @ConfigurationProperties(prefix = "jwt")
 public class CryptoConfig {
 	private String secret;
+	private long exp;
 
 	@Bean
 	public PasswordEncoder passwordEncoder() {
@@ -22,5 +23,13 @@ public class CryptoConfig {
 
 	public void setSecret(String secret) {
 		this.secret = secret;
+	}
+
+	public long getExp() {
+		return exp;
+	}
+
+	public void setExp(long exp) {
+		this.exp = exp;
 	}
 }

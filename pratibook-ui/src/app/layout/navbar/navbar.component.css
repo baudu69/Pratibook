@@ -1,0 +1,29 @@
+nav {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  background-color: black;
+  min-height: 5em;
+}
+
+#left {
+
+}
+
+#right {
+
+}
+
+.lien {
+  font-size: 20px;
+  padding: 2em;
+  background-color: #000000;
+  text-decoration: none;
+  color: white;
+
+}
+
+.lien:hover {
+  background-color: gray;
+  font-size: 22px;
+}

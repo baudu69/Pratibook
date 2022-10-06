@@ -1,1 +1,18 @@
-<p>navbar works!</p>
+<nav>
+  <div id="left">
+    <a routerLink="/" class="lien">
+      Accueil
+    </a>
+  </div>
+  <div id="right">
+    <a *ngIf="!userService.isConnected" routerLink="/signUp" class="lien">
+      Inscription
+    </a>
+    <a *ngIf="!userService.isConnected" routerLink="/signIn" class="lien">
+      Connexion
+    </a>
+    <a *ngIf="userService.isConnected" (click)="userService.logout()" routerLink="/signIn" class="lien">
+      Deconnexion
+    </a>
+  </div>
+</nav>
