@@ -1,10 +1,8 @@
 package fr.inextenso.pratibook.model;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.Set;
 
 @Entity
 @Table(name = "auteur")
@@ -24,6 +22,9 @@ public class Auteur {
 
     @Column(name = "date_deces_auteur")
     private LocalDate dateDecesAuteur;
+
+    @ManyToMany(mappedBy = "auteurs")
+    private Set<Oeuvre> oeuvres;
 
     public Integer getId() {
         return id;
@@ -63,6 +64,14 @@ public class Auteur {
 
     public void setDateDecesAuteur(LocalDate dateDecesAuteur) {
         this.dateDecesAuteur = dateDecesAuteur;
+    }
+
+    public Set<Oeuvre> getOeuvres() {
+        return oeuvres;
+    }
+
+    public void setOeuvres(Set<Oeuvre> oeuvres) {
+        this.oeuvres = oeuvres;
     }
 
 }
