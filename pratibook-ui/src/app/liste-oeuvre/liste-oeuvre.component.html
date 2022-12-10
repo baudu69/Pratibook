@@ -1,0 +1,8 @@
+<h1>Liste des oeuvres</h1>
+<mat-form-field class="example-full-width">
+  <mat-label>Recherche</mat-label>
+  <input matInput placeholder="Ex. Pizza" [formControl]="filtreControl">
+</mat-form-field>
+<div class="liste">
+  <app-oeuvre *ngFor="let oeuvre of oeuvres|async" [oeuvre]="oeuvre"></app-oeuvre>
+</div>

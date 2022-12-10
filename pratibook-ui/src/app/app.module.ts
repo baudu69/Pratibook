@@ -14,7 +14,7 @@ import {JwtInterceptor} from "./shared/interceptors/jwt.interceptor";
   declarations: [
     AppComponent,
     AccueilComponent,
-    NavbarComponent,
+    NavbarComponent
   ],
   imports: [
     BrowserModule,
