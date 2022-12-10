@@ -1,18 +1,13 @@
 <nav>
   <div id="left">
-    <a routerLink="/" class="lien">
-      Accueil
-    </a>
+    <a routerLink="/">Accueil</a>
+    <ng-container *ngIf="userService.isConnected">
+      <a routerLink="/auteurs">Auteurs</a>
+    </ng-container>
   </div>
   <div id="right">
-    <a *ngIf="!userService.isConnected" routerLink="/signUp" class="lien">
-      Inscription
-    </a>
-    <a *ngIf="!userService.isConnected" routerLink="/signIn" class="lien">
-      Connexion
-    </a>
-    <a *ngIf="userService.isConnected" (click)="userService.logout()" routerLink="/signIn" class="lien">
-      Deconnexion
-    </a>
+    <a *ngIf="!userService.isConnected" routerLink="/signUp">Inscription</a>
+    <a *ngIf="!userService.isConnected" routerLink="/signIn">Connexion</a>
+    <a *ngIf="userService.isConnected" (click)="userService.logout()" routerLink="/signIn">Déconnexion</a>
   </div>
 </nav>
