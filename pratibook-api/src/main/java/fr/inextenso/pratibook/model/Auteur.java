@@ -23,7 +23,7 @@ public class Auteur {
     @Column(name = "date_deces_auteur")
     private LocalDate dateDecesAuteur;
 
-    @ManyToMany(mappedBy = "auteurs")
+    @ManyToMany(mappedBy = "auteurs", fetch = FetchType.LAZY)
     private Set<Oeuvre> oeuvres;
 
     public Integer getId() {

@@ -20,7 +20,7 @@ public class Oeuvre {
     @Column(name = "isbn", length = 13)
     private String isbn;
 
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(
             name = "cree",
             joinColumns = {@JoinColumn(name = "id_oeuvre")},
@@ -28,7 +28,7 @@ public class Oeuvre {
     )
     private Set<Auteur> auteurs;
 
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(
             name = "genre_oeuvre",
             joinColumns = {@JoinColumn(name = "id_oeuvre")},
