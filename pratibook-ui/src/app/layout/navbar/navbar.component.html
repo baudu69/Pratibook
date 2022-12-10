@@ -1,6 +1,9 @@
 <nav>
   <div id="left">
     <a routerLink="/">Accueil</a>
+    <ng-container *ngIf="userService.isConnected">
+      <a routerLink="/auteurs">Auteurs</a>
+    </ng-container>
   </div>
   <div id="right">
     <a *ngIf="!userService.isConnected" routerLink="/signUp">Inscription</a>
