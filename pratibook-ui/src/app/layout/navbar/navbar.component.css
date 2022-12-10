@@ -1,29 +1,25 @@
 nav {
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
   background-color: black;
-  min-height: 5em;
 }
 
 #left {
-
 }
 
 #right {
-
+  margin-left: auto;
 }
 
-.lien {
+a {
+  display: inline-block;
   font-size: 20px;
   padding: 2em;
   background-color: #000000;
   text-decoration: none;
   color: white;
-
 }
 
-.lien:hover {
-  background-color: gray;
-  font-size: 22px;
+a:hover {
+  background-color: #666;
 }

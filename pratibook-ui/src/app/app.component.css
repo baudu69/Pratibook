@@ -1,3 +1,7 @@
+:host::ng-deep {
+  font-family: "Comic Sans MS";
+}
+
 #container {
   margin: 3em;
 }
