@@ -43,8 +43,10 @@ export class ListeOeuvreComponent implements OnInit {
       this.oeuvres.next(this.oeuvresCompletes);
       return;
     }
-    this.oeuvres.next(this.oeuvresCompletes.filter(oeuvre => oeuvre.titre.toLowerCase().includes(filtre.toLowerCase())
-    // || oeuvre.dateSortie.toDateString().includes(filtre)
+    this.oeuvres.next(this.oeuvresCompletes.filter(oeuvre =>
+      oeuvre.titre.toLowerCase().includes(filtre.toLowerCase())
+       || oeuvre.auteurs.map(auteur => auteur.nomAuteur.toLowerCase()).some(nomAuteur => nomAuteur.includes(filtre.toLowerCase()))
+       || oeuvre.auteurs.map(auteur => auteur.prenomAuteur.toLowerCase()).some(prenomAuteur => prenomAuteur.includes(filtre.toLowerCase()))
     ));
   }
 }
