@@ -47,6 +47,7 @@ export class ListeOeuvreComponent implements OnInit {
       oeuvre.titre.toLowerCase().includes(filtre.toLowerCase())
        || oeuvre.auteurs.map(auteur => auteur.nomAuteur.toLowerCase()).some(nomAuteur => nomAuteur.includes(filtre.toLowerCase()))
        || oeuvre.auteurs.map(auteur => auteur.prenomAuteur.toLowerCase()).some(prenomAuteur => prenomAuteur.includes(filtre.toLowerCase()))
+       || oeuvre.genres.map(genre => genre.nomGenre.toLowerCase()).some(nomGenre => nomGenre.includes(filtre.toLowerCase()))
     ));
   }
 }
