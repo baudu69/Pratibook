@@ -54,6 +54,8 @@ public class WebSecurityConfig {
 	protected SecurityFilterChain filterChain(HttpSecurity httpSecurity) throws Exception {
 		return httpSecurity
 				.authorizeRequests()
+				.antMatchers("/api/oeuvre").permitAll()
+				.antMatchers("/api/auteur").permitAll()
 				.anyRequest().authenticated()
 				.and()
 				.exceptionHandling().authenticationEntryPoint(jwtAuthenticationEntryPoint)
