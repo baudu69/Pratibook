@@ -12,7 +12,7 @@ export interface Auteur {
 export interface Oeuvre {
   idOeuvre: number;
   titre: string;
-  dateSortie: Date;
+  anneeSortie: number;
   isbn: string;
   nbInstanceDisponibles: number;
   genres: Genre[];
