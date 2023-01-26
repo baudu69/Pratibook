@@ -11,16 +11,16 @@ import java.util.Objects;
 public class CreeId implements Serializable {
     private static final long serialVersionUID = -5139340440492079686L;
     @Column(name = "id_oeuvre", nullable = false, length = 50)
-    private String idOeuvre;
+    private Integer idOeuvre;
 
     @Column(name = "id_auteur", nullable = false)
     private Integer idAuteur;
 
-    public String getIdOeuvre() {
+    public Integer getIdOeuvre() {
         return idOeuvre;
     }
 
-    public void setIdOeuvre(String idOeuvre) {
+    public void setIdOeuvre(Integer idOeuvre) {
         this.idOeuvre = idOeuvre;
     }
 

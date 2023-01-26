@@ -14,7 +14,7 @@ public class GenreOeuvreId implements Serializable {
     private Integer idGenre;
 
     @Column(name = "id_oeuvre", nullable = false, length = 50)
-    private String idOeuvre;
+    private Integer idOeuvre;
 
     public Integer getIdGenre() {
         return idGenre;
@@ -24,11 +24,11 @@ public class GenreOeuvreId implements Serializable {
         this.idGenre = idGenre;
     }
 
-    public String getIdOeuvre() {
+    public Integer getIdOeuvre() {
         return idOeuvre;
     }
 
-    public void setIdOeuvre(String idOeuvre) {
+    public void setIdOeuvre(Integer idOeuvre) {
         this.idOeuvre = idOeuvre;
     }
 

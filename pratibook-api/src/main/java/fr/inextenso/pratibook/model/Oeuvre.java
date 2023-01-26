@@ -8,14 +8,14 @@ import java.util.Set;
 @Table(name = "oeuvre")
 public class Oeuvre {
     @Id
-    @Column(name = "id_oeuvre", nullable = false, length = 50)
-    private String id;
+    @Column(name = "id_oeuvre", nullable = false)
+    private Integer id;
 
     @Column(name = "titre", length = 50)
     private String titre;
 
-    @Column(name = "date_sortie")
-    private LocalDate dateSortie;
+    @Column(name = "annee_sortie")
+    private Short anneeSortie;
 
     @Column(name = "isbn", length = 13)
     private String isbn;
@@ -36,11 +36,11 @@ public class Oeuvre {
     )
     private Set<Genre> genres;
 
-    public String getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -52,12 +52,12 @@ public class Oeuvre {
         this.titre = titre;
     }
 
-    public LocalDate getDateSortie() {
-        return dateSortie;
+    public Short getAnneeSortie() {
+        return anneeSortie;
     }
 
-    public void setDateSortie(LocalDate dateSortie) {
-        this.dateSortie = dateSortie;
+    public void setAnneeSortie(Short anneeSortie) {
+        this.anneeSortie = anneeSortie;
     }
 
     public String getIsbn() {

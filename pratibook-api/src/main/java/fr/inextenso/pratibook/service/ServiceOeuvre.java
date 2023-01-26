@@ -38,7 +38,7 @@ public class ServiceOeuvre {
                 .map(oeuvre -> new OeuvreDTO(
                         oeuvre.getId(),
                         oeuvre.getTitre(),
-                        oeuvre.getDateSortie(),
+                        oeuvre.getAnneeSortie(),
                         oeuvre.getIsbn(),
                         this.getNbInstanceDisponibles(oeuvre.getId()),
                         this.getGenreOeuvreDTOs(oeuvre.getId()),
@@ -47,7 +47,7 @@ public class ServiceOeuvre {
                 .toList();
     }
 
-    private List<AuteurOeuvreDTO> getAuteurOeuvreDTOs(String idOeuvre) {
+    private List<AuteurOeuvreDTO> getAuteurOeuvreDTOs(Integer idOeuvre) {
         return creeRepository.findById_IdOeuvre(idOeuvre)
                 .stream()
                 .map(cree -> cree.getId().getIdAuteur())
@@ -58,7 +58,7 @@ public class ServiceOeuvre {
                 .toList();
     }
 
-    private List<GenreOeuvreDTO> getGenreOeuvreDTOs(String idOeuvre) {
+    private List<GenreOeuvreDTO> getGenreOeuvreDTOs(Integer idOeuvre) {
         return genreOeuvreRepository.findById_IdOeuvre(idOeuvre)
                 .stream()
                 .map(genreOeuvre -> genreOeuvre.getId().getIdGenre())
@@ -66,7 +66,7 @@ public class ServiceOeuvre {
                 .toList();
     }
 
-    private long getNbInstanceDisponibles(String idOeuvre) {
+    private long getNbInstanceDisponibles(Integer idOeuvre) {
         return this.instanceOeuvreRepository.findByIdOeuvre_Id(idOeuvre)
                 .stream()
                 .filter(instanceOeuvre -> instanceOeuvre.getEtatDisponibilite().equals(Disponibilite.DISPONIBLE))
