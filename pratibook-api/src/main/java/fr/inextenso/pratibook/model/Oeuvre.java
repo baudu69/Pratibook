@@ -35,6 +35,9 @@ public class Oeuvre {
             inverseJoinColumns = {@JoinColumn(name = "id_genre")}
     )
     private Set<Genre> genres;
+    
+    @OneToMany(mappedBy = "oeuvre", fetch = FetchType.LAZY)
+    private Set<InstanceOeuvre> instances;
 
     public Integer getId() {
         return id;
@@ -83,4 +86,9 @@ public class Oeuvre {
     public void setGenres(Set<Genre> genres) {
         this.genres = genres;
     }
+
+    public Set<InstanceOeuvre> getInstances() {
+        return instances;
+    }
+
 }

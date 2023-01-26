@@ -22,7 +22,7 @@ public class ServiceAuteur {
 				.stream()
 				.map(auteur -> AuteurDTO.fromAuteur(auteur, auteur.getOeuvres().stream()
 						.flatMap(oeuvre -> oeuvre.getGenres().stream())
-						.map(GenreOeuvreDTO::fromGenre)
+						.map(GenreOeuvreDTO::new)
 						.collect(Collectors.toSet())))
 				.toList();
 	}

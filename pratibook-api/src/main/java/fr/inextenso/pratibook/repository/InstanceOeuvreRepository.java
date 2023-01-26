@@ -6,5 +6,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import java.util.List;
 
 public interface InstanceOeuvreRepository extends JpaRepository<InstanceOeuvre, Integer> {
-    List<InstanceOeuvre> findByIdOeuvre_Id(Integer id);
+    List<InstanceOeuvre> findByOeuvre_Id(Integer id);
 }
