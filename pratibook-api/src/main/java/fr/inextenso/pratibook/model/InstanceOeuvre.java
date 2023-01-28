@@ -11,7 +11,7 @@ public class InstanceOeuvre {
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "id_oeuvre", nullable = false)
-    private Oeuvre idOeuvre;
+    private Oeuvre oeuvre;
 
     @Column(name = "etat_disponibilite")
     @Enumerated(EnumType.ORDINAL)
@@ -25,12 +25,12 @@ public class InstanceOeuvre {
         this.id = id;
     }
 
-    public Oeuvre getIdOeuvre() {
-        return idOeuvre;
+    public Oeuvre getOeuvre() {
+        return oeuvre;
     }
 
-    public void setIdOeuvre(Oeuvre idOeuvre) {
-        this.idOeuvre = idOeuvre;
+    public void setOeuvre(Oeuvre oeuvre) {
+        this.oeuvre = oeuvre;
     }
 
     public Disponibilite getEtatDisponibilite() {
