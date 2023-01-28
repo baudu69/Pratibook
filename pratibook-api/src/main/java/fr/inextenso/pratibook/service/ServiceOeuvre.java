@@ -50,7 +50,7 @@ public class ServiceOeuvre {
                 .toList();
     }
 
-    private long getNbInstanceDisponibles(Oeuvre oeuvre) {
+    public static long getNbInstanceDisponibles(Oeuvre oeuvre) {
         return oeuvre.getInstances().stream()
                 .map(InstanceOeuvre::getEtatDisponibilite)
                 .filter(Disponibilite.DISPONIBLE::equals)
