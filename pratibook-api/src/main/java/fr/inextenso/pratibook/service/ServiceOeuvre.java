@@ -7,9 +7,9 @@ import fr.inextenso.pratibook.model.Disponibilite;
 import fr.inextenso.pratibook.model.InstanceOeuvre;
 import fr.inextenso.pratibook.model.Oeuvre;
 import fr.inextenso.pratibook.repository.OeuvreRepository;
+import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
 
-import javax.transaction.Transactional;
 import java.util.List;
 
 @Service
