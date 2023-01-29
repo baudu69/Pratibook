@@ -1,7 +1,7 @@
 package fr.inextenso.pratibook.model;
 
-import javax.persistence.*;
-import java.time.LocalDate;
+import jakarta.persistence.*;
+
 import java.util.Set;
 
 @Entity
