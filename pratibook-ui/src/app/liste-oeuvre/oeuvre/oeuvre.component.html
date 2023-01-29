@@ -1,6 +1,6 @@
 <a routerLink="" id="contenu">
   <span class="titre">{{oeuvre.titre}}</span>
-  <span *ngFor="let auteur of oeuvre.auteurs">{{auteur.nomAuteur}} {{auteur.prenomAuteur}}</span>
+  <span *ngFor="let auteur of oeuvre.auteurs">{{auteur.prenomAuteur}} {{auteur.nomAuteur}}</span>
   <span>{{oeuvre.anneeSortie}}</span>
   <span><ng-container *ngFor="let genre of oeuvre.genres">{{genre.nomGenre}} </ng-container></span>
   <span>{{oeuvre.nbInstanceDisponibles}} exemplaires disponibles</span>
