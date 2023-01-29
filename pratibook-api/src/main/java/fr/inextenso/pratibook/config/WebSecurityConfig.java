@@ -4,6 +4,7 @@ import fr.inextenso.pratibook.user.JwtUserDetailService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -54,7 +55,7 @@ public class WebSecurityConfig {
 	protected SecurityFilterChain filterChain(HttpSecurity httpSecurity) throws Exception {
 		return httpSecurity.authorizeHttpRequests()
 				.requestMatchers("/api/oeuvre").permitAll()
-				.requestMatchers("/api/auteur").permitAll()
+				.requestMatchers(HttpMethod.GET, "/api/auteur/**").permitAll()
 				.anyRequest().authenticated()
 				.and()
 				.exceptionHandling().authenticationEntryPoint(jwtAuthenticationEntryPoint)
