@@ -17,7 +17,11 @@ import {MatButtonModule} from "@angular/material/button";
   imports: [
     CommonModule,
     RouterModule.forChild([
-      {path: '', component: ListeOeuvreComponent}
+      {path: '', component: ListeOeuvreComponent},
+      {
+        path: 'oeuvre/:idOeuvre',
+        loadComponent: () => import('../fiche-oeuvre/fiche-oeuvre.component').then(mod => mod.FicheOeuvreComponent)
+      }
     ]),
     MatFormFieldModule,
     MatInputModule,

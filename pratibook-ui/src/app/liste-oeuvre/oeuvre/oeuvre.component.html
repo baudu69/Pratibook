@@ -1,4 +1,4 @@
-<a routerLink="" id="contenu">
+<a id="contenu" routerLink="oeuvre/{{oeuvre.idOeuvre}}">
   <span class="titre">{{oeuvre.titre}}</span>
   <span *ngFor="let auteur of oeuvre.auteurs">{{auteur.prenomAuteur}} {{auteur.nomAuteur}}</span>
   <span>{{oeuvre.anneeSortie}}</span>
