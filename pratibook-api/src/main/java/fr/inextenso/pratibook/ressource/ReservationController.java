@@ -32,6 +32,7 @@ public class ReservationController {
 		try {
 			this.serviceReservation.demandeReservation(idOeuvre, idUser);
 		} catch (AlreadyReservedException | NotAvailableException e) {
+			logger.warn("Erreur lors de la demande de réservation de l'oeuvre {} par {}: {}", idOeuvre, authentication.getName(), e.getMessage());
 			throw new ResponseStatusException(HttpStatus.BAD_REQUEST, e.getMessage(), e);
 		}
 		return ResponseEntity.ok().build();

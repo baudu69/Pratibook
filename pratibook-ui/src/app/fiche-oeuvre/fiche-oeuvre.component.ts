@@ -54,6 +54,13 @@ export class FicheOeuvreComponent implements OnInit {
   }
 
   reserver(): void {
-    this.snackbar.open('Fonction de réservation non implémentée', 'OK', {duration: 5000})
+    this.ficheOeuvreService.reserverOeuvre(this.idOeuvre!!).subscribe({
+      next: () => {
+        this.snackbar.open('Réservation effectuée', 'OK', {duration: 5000});
+      },
+      error: (err) => {
+        this.snackbar.open('Erreur, cette oeuvre n\'est plus disponible ou a déjà été réservée', 'OK', {duration: 5000});
+      }
+    })
   }
 }

@@ -14,4 +14,8 @@ export class FicheOeuvreService {
   loadOeuvre(idOeuvre: number): Observable<Oeuvre> {
     return this.http.get<Oeuvre>(`api/oeuvre/${idOeuvre}`);
   }
+
+  reserverOeuvre(idOeuvre: number): Observable<void> {
+    return this.http.get<void>(`api/reservation/demande/${idOeuvre}`);
+  }
 }
