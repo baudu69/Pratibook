@@ -57,4 +57,16 @@ public class ServiceOeuvre {
                 .count();
     }
 
+    public OeuvreDTO findById(Integer idOeuvre) {
+        Oeuvre oeuvre = oeuvreRepository.findById(idOeuvre).orElseThrow();
+        return new OeuvreDTO(
+                oeuvre.getId(),
+                oeuvre.getTitre(),
+                oeuvre.getAnneeSortie(),
+                oeuvre.getIsbn(),
+                this.getNbInstanceDisponibles(oeuvre),
+                this.getGenreOeuvreDTOs(oeuvre),
+                this.getAuteurOeuvreDTOs(oeuvre)
+        );
+    }
 }
