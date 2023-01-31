@@ -53,7 +53,7 @@ public class WebSecurityConfig {
 	@Bean
 	protected SecurityFilterChain filterChain(HttpSecurity httpSecurity) throws Exception {
 		return httpSecurity.authorizeHttpRequests()
-				.requestMatchers("/api/oeuvre").permitAll()
+				.requestMatchers("/api/oeuvre/**").permitAll()
 				.requestMatchers("/api/auteur").permitAll()
 				.anyRequest().authenticated()
 				.and()
