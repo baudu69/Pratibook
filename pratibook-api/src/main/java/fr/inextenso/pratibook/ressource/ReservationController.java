@@ -10,6 +10,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
@@ -39,14 +40,14 @@ public class ReservationController {
 		return ResponseEntity.noContent().build();
 	}
 
-//	@PreAuthorize("hasAuthority('Employe')")
+	@PreAuthorize("hasAuthority('Employe')")
 	@GetMapping
 	public ResponseEntity<List<DemandeReservationDTO>> getDemandesReservation() {
 		logger.info("Récupération des demandes de réservation");
 		return ResponseEntity.ok(this.serviceReservation.getListeDemandeReservation());
 	}
 
-	//	@PreAuthorize("hasAuthority('Employe')")
+	@PreAuthorize("hasAuthority('Employe')")
 	@PostMapping
 	public ResponseEntity<Void> accepterDemandeReservation(@RequestBody ValidationDemandeReservation demandeReservationDTO, Authentication authentication) {
 		logger.info("Acceptation de la demande de réservation de l'oeuvre {} par {}", demandeReservationDTO.codeBarre(), demandeReservationDTO.idUser());
@@ -55,7 +56,7 @@ public class ReservationController {
 			this.serviceReservation.validerDemandeReservation(demandeReservationDTO, idEmploye);
 		} catch (Exception e) {
 			logger.warn("Erreur lors de l'acceptation de la demande de réservation de l'oeuvre {} par {}: {}", demandeReservationDTO.codeBarre(), demandeReservationDTO.idUser(), e.getMessage());
-			throw new ResponseStatusException(HttpStatus.BAD_REQUEST, e.getMessage(), e);
+			throw new ResponseStatusException(HttpStatus.BAD_REQUEST, e.getMessage());
 		}
 		return ResponseEntity.noContent().build();
 	}
