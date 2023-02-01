@@ -10,10 +10,13 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.web.server.ResponseStatusException;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.Mockito.doThrow;
 
@@ -27,6 +30,7 @@ class ReservationControllerTest {
 	@Autowired
 	private ReservationController reservationController;
 
+
 	@Test
 	void demandeReservation() {
 		User user = new User();
@@ -37,5 +41,7 @@ class ReservationControllerTest {
 		assertThrows(ResponseStatusException.class, () -> reservationController.demandeReservation(1, authentication));
 		doThrow(NotAvailableException.class).when(serviceReservation).demandeReservation(2, 1);
 		assertThrows(ResponseStatusException.class, () -> reservationController.demandeReservation(2, authentication));
+		ResponseEntity<Void> response = reservationController.demandeReservation(3, authentication);
+		assertEquals(HttpStatus.NO_CONTENT, response.getStatusCode());
 	}
 }

@@ -1,23 +1,35 @@
 package fr.inextenso.pratibook.service;
 
+import fr.inextenso.pratibook.dto.DemandeReservationDTO;
+import fr.inextenso.pratibook.dto.OeuvreDTO;
+import fr.inextenso.pratibook.dto.ValidationDemandeReservation;
 import fr.inextenso.pratibook.exception.AlreadyReservedException;
 import fr.inextenso.pratibook.exception.NotAvailableException;
-import fr.inextenso.pratibook.model.DemandeReservation;
-import fr.inextenso.pratibook.model.Oeuvre;
+import fr.inextenso.pratibook.model.*;
 import fr.inextenso.pratibook.repository.DemandeReservationRepository;
+import fr.inextenso.pratibook.repository.InstanceOeuvreRepository;
+import fr.inextenso.pratibook.repository.LocationRepository;
 import fr.inextenso.pratibook.repository.OeuvreRepository;
+import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Service
 public class ServiceReservation {
 	private final DemandeReservationRepository demandeReservationRepository;
 	private final OeuvreRepository oeuvreRepository;
+	private final ServiceOeuvre serviceOeuvre;
+	private final LocationRepository locationRepository;
+	private final InstanceOeuvreRepository instanceOeuvreRepository;
 
-	public ServiceReservation(DemandeReservationRepository demandeReservationRepository, OeuvreRepository oeuvreRepository) {
+	public ServiceReservation(DemandeReservationRepository demandeReservationRepository, OeuvreRepository oeuvreRepository, ServiceOeuvre serviceOeuvre, LocationRepository locationRepository, InstanceOeuvreRepository instanceOeuvreRepository) {
 		this.demandeReservationRepository = demandeReservationRepository;
 		this.oeuvreRepository = oeuvreRepository;
+		this.serviceOeuvre = serviceOeuvre;
+		this.locationRepository = locationRepository;
+		this.instanceOeuvreRepository = instanceOeuvreRepository;
 	}
 
 	/**
@@ -36,5 +48,31 @@ public class ServiceReservation {
 		}
 		final DemandeReservation demandeReservation = new DemandeReservation(idOeuvre, idUser, LocalDateTime.now());
 		this.demandeReservationRepository.save(demandeReservation);
+	}
+
+	public List<DemandeReservationDTO> getListeDemandeReservation() {
+		return this.demandeReservationRepository.findAll()
+				.stream()
+				.map(demande -> {
+					OeuvreDTO oeuvreDTO = this.serviceOeuvre.findById(demande.getId().getIdOeuvre());
+					return new DemandeReservationDTO(oeuvreDTO, demande.getId().getIdUser(), demande.getDateDemande());
+				})
+				.toList();
+	}
+
+	@Transactional(rollbackOn = Exception.class)
+	public void validerDemandeReservation(ValidationDemandeReservation demandeReservationDTO, int idEmploye) {
+		Location location = new Location();
+		location.setCodeBarre(demandeReservationDTO.codeBarre());
+		location.setIdEmploye(idEmploye);
+		location.setIdUtilisateur(demandeReservationDTO.idUser());
+		location.setDateReservation(LocalDateTime.now());
+		this.locationRepository.save(location);
+		InstanceOeuvre instanceOeuvre = this.instanceOeuvreRepository.findById(demandeReservationDTO.codeBarre()).orElseThrow(() -> new IllegalArgumentException("L'instance d'oeuvre n'existe pas"));
+		instanceOeuvre.setEtatDisponibilite(Disponibilite.EMPRUNTE);
+		this.instanceOeuvreRepository.save(instanceOeuvre);
+		if (this.demandeReservationRepository.deleteById_IdUserAndId_IdOeuvre(demandeReservationDTO.idUser(), instanceOeuvre.getOeuvre().getId()) != 1) {
+			throw new IllegalArgumentException("La demande de réservation n'existe pas");
+		}
 	}
 }

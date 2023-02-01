@@ -7,31 +7,31 @@ import jakarta.persistence.*;
 public class InstanceOeuvre {
     @Id
     @Column(name = "code_barre", nullable = false, length = 50)
-    private String id;
+    private String codeBarre;
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "id_oeuvre", nullable = false)
-    private Oeuvre oeuvre;
+	@ManyToOne(fetch = FetchType.LAZY, optional = false)
+	@JoinColumn(name = "id_oeuvre", nullable = false)
+	private Oeuvre oeuvre;
 
-    @Column(name = "etat_disponibilite")
-    @Enumerated(EnumType.ORDINAL)
-    private Disponibilite etatDisponibilite;
+	@Column(name = "etat_disponibilite")
+	@Enumerated(EnumType.ORDINAL)
+	private Disponibilite etatDisponibilite;
 
-    public String getId() {
-        return id;
-    }
+	public String getCodeBarre() {
+		return codeBarre;
+	}
 
-    public void setId(String id) {
-        this.id = id;
-    }
+	public void setCodeBarre(String codeBarre) {
+		this.codeBarre = codeBarre;
+	}
 
-    public Oeuvre getOeuvre() {
-        return oeuvre;
-    }
+	public Oeuvre getOeuvre() {
+		return oeuvre;
+	}
 
-    public void setOeuvre(Oeuvre oeuvre) {
-        this.oeuvre = oeuvre;
-    }
+	public void setOeuvre(Oeuvre oeuvre) {
+		this.oeuvre = oeuvre;
+	}
 
     public Disponibilite getEtatDisponibilite() {
         return etatDisponibilite;
