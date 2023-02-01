@@ -7,9 +7,8 @@
 
   <ng-container matColumnDef="boutonFiche">
     <th mat-header-cell *matHeaderCellDef></th>
-    <td mat-cell *matCellDef>
-      <!-- TODO: lien vers la fiche -->
-      <a [routerLink]="[]">
+    <td mat-cell *matCellDef="let auteur">
+      <a [routerLink]="['/fiche-auteur', auteur.idAuteur]">
         <button mat-raised-button>Voir la fiche</button>
       </a>
     </td>

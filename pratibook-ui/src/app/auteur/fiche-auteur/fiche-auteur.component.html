@@ -1,0 +1,5 @@
+<h1>{{auteur?.prenomAuteur}} {{auteur?.nomAuteur}}</h1>
+<div id="auteur">
+  <p *ngIf="auteur?.dateNaissanceAuteur">Date de naissance : {{auteur?.dateNaissanceAuteur | date:'longDate':undefined:'fr-FR' }}</p>
+  <p *ngIf="auteur?.dateDecesAuteur">Date de décès : {{auteur?.dateDecesAuteur | date:'longDate':undefined:'fr-FR'}}</p>
+</div>
