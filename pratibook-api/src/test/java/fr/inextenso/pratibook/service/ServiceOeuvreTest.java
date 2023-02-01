@@ -52,7 +52,7 @@ class ServiceOeuvreTest {
 		oeuvre.getGenres().add(genre);
 
 		InstanceOeuvre instanceOeuvre = new InstanceOeuvre();
-		instanceOeuvre.setId("1234567890123");
+		instanceOeuvre.setCodeBarre("1234567890123");
 		instanceOeuvre.setOeuvre(oeuvre);
 		instanceOeuvre.setEtatDisponibilite(Disponibilite.DISPONIBLE);
 
@@ -107,7 +107,7 @@ class ServiceOeuvreTest {
 		oeuvre.getGenres().add(genre);
 
 		InstanceOeuvre instanceOeuvre = new InstanceOeuvre();
-		instanceOeuvre.setId("1234567890123");
+		instanceOeuvre.setCodeBarre("1234567890123");
 		instanceOeuvre.setOeuvre(oeuvre);
 		instanceOeuvre.setEtatDisponibilite(Disponibilite.DISPONIBLE);
 
