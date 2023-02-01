@@ -1,4 +1,6 @@
 package fr.inextenso.pratibook.dto;
 
-public record ValidationDemandeReservation(String codeBarre, int idUser) {
+import java.io.Serializable;
+
+public record ValidationDemandeReservation(String codeBarre, int idUser) implements Serializable {
 }

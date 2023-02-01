@@ -42,7 +42,7 @@ public class WebSecurityConfig {
 
 	@Bean
 	public WebSecurityCustomizer webSecurityCustomizer() {
-		return (web) -> web.ignoring().requestMatchers("/api/auth/**");
+		return (web) -> web.ignoring().requestMatchers("/api/auth/**", "/error");
 	}
 
 	@Bean
@@ -52,7 +52,10 @@ public class WebSecurityConfig {
 
 	@Bean
 	protected SecurityFilterChain filterChain(HttpSecurity httpSecurity) throws Exception {
-		return httpSecurity.authorizeHttpRequests()
+		return httpSecurity
+				.csrf()
+				.disable()
+				.authorizeHttpRequests()
 				.requestMatchers("/api/oeuvre/**").permitAll()
 				.requestMatchers("/api/auteur").permitAll()
 				.anyRequest().authenticated()
