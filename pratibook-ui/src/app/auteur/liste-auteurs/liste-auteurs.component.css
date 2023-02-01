@@ -1,10 +1,10 @@
 table {
-	width: 100%;
+  width: 50rem;
+  max-width: 100%;
 	margin: auto;
 }
 
-td.mat-column-boutonFiche,
-td.mat-column-boutonOeuvres {
+td.mat-column-boutonDetails {
 	width: 0;
 	padding-right: 2em;
 }

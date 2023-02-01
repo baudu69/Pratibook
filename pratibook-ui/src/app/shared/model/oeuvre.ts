@@ -2,7 +2,7 @@ import {Genre} from "./igenre";
 
 export interface IOeuvre {
   idOeuvre: number | undefined;
-  titreOeuvre: string;
+  titre: string;
   anneeSortie: number;
   genres: Genre[];
 }

@@ -30,7 +30,7 @@ public record AuteurWithOeuvresDTO(
     }
 
     public record OeuvreListItemDTO(
-            Integer id,
+            Integer idOeuvre,
             String titre,
             Short anneeSortie,
             Set<GenreOeuvreDTO> genres
