@@ -1,0 +1,18 @@
+#scanner {
+  height: 240px;
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+#scanner::ng-deep video {
+  height: 240px;
+}
+
+#scanner::ng-deep canvas {
+  display: none;
+}
+
+#bCancel {
+  margin: auto;
+  display: block;
+}
