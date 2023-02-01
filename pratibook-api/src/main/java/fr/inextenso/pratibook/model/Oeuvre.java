@@ -91,4 +91,8 @@ public class Oeuvre {
         return instances;
     }
 
+    public void setInstances(Set<InstanceOeuvre> instances) {
+        this.instances = instances;
+    }
+
 }

@@ -27,13 +27,13 @@ public class ServiceOeuvre {
         return oeuvres
                 .stream()
                 .map(oeuvre -> new OeuvreDTO(
-                        oeuvre.getId(),
-                        oeuvre.getTitre(),
-                        oeuvre.getAnneeSortie(),
-                        oeuvre.getIsbn(),
-                        this.getNbInstanceDisponibles(oeuvre),
-                        this.getGenreOeuvreDTOs(oeuvre),
-                        this.getAuteurOeuvreDTOs(oeuvre)
+		                oeuvre.getId(),
+		                oeuvre.getTitre(),
+		                oeuvre.getAnneeSortie(),
+		                oeuvre.getIsbn(),
+		                getNbInstanceDisponibles(oeuvre),
+		                this.getGenreOeuvreDTOs(oeuvre),
+		                this.getAuteurOeuvreDTOs(oeuvre)
                 ))
                 .toList();
     }
@@ -50,11 +50,23 @@ public class ServiceOeuvre {
                 .toList();
     }
 
-    private long getNbInstanceDisponibles(Oeuvre oeuvre) {
+    public static long getNbInstanceDisponibles(Oeuvre oeuvre) {
         return oeuvre.getInstances().stream()
                 .map(InstanceOeuvre::getEtatDisponibilite)
                 .filter(Disponibilite.DISPONIBLE::equals)
                 .count();
     }
 
+    public OeuvreDTO findById(Integer idOeuvre) {
+        Oeuvre oeuvre = oeuvreRepository.findById(idOeuvre).orElseThrow();
+        return new OeuvreDTO(
+		        oeuvre.getId(),
+		        oeuvre.getTitre(),
+		        oeuvre.getAnneeSortie(),
+		        oeuvre.getIsbn(),
+		        getNbInstanceDisponibles(oeuvre),
+		        this.getGenreOeuvreDTOs(oeuvre),
+		        this.getAuteurOeuvreDTOs(oeuvre)
+        );
+    }
 }

@@ -11,6 +11,7 @@ export class UserService {
   public token?: string
   public isConnected: boolean = false
   public isAdmin: boolean = false
+  public isEmploye: boolean = false
   public userInfo: Subject<LoginResponse> = new Subject<LoginResponse>();
   public connected: Subject<boolean> = new Subject<boolean>();
   public admin: Subject<boolean> = new Subject<boolean>();
@@ -22,6 +23,7 @@ export class UserService {
       this.connected.next(true)
       this.admin.next(res.roles.includes('ADMIN'))
       this.isAdmin = res.roles.includes('ADMIN')
+      this.isEmploye = res.roles.includes('Employe')
       this.isConnected = true
       localStorage.setItem('userInfo', JSON.stringify(res))
       localStorage.setItem("exp", res.exp.toString())
@@ -72,6 +74,7 @@ export class UserService {
     this.connected.next(false)
     this.admin.next(false)
     this.isConnected = false
+    this.isEmploye = false
     localStorage.clear()
   }
 }
