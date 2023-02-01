@@ -62,17 +62,17 @@ public class ServiceReservation {
 
 	@Transactional(rollbackOn = Exception.class)
 	public void validerDemandeReservation(ValidationDemandeReservation demandeReservationDTO, int idEmploye) {
+		InstanceOeuvre instanceOeuvre = this.instanceOeuvreRepository.findById(demandeReservationDTO.codeBarre()).orElseThrow(() -> new IllegalArgumentException("L'instance d'oeuvre n'existe pas"));
+		if (this.demandeReservationRepository.deleteById_IdUserAndId_IdOeuvre(demandeReservationDTO.idUser(), instanceOeuvre.getOeuvre().getId()) != 1) {
+			throw new IllegalArgumentException("La demande de réservation n'existe pas");
+		}
+		instanceOeuvre.setEtatDisponibilite(Disponibilite.EMPRUNTE);
+		this.instanceOeuvreRepository.save(instanceOeuvre);
 		Location location = new Location();
 		location.setCodeBarre(demandeReservationDTO.codeBarre());
 		location.setIdEmploye(idEmploye);
 		location.setIdUtilisateur(demandeReservationDTO.idUser());
 		location.setDateReservation(LocalDateTime.now());
 		this.locationRepository.save(location);
-		InstanceOeuvre instanceOeuvre = this.instanceOeuvreRepository.findById(demandeReservationDTO.codeBarre()).orElseThrow(() -> new IllegalArgumentException("L'instance d'oeuvre n'existe pas"));
-		instanceOeuvre.setEtatDisponibilite(Disponibilite.EMPRUNTE);
-		this.instanceOeuvreRepository.save(instanceOeuvre);
-		if (this.demandeReservationRepository.deleteById_IdUserAndId_IdOeuvre(demandeReservationDTO.idUser(), instanceOeuvre.getOeuvre().getId()) != 1) {
-			throw new IllegalArgumentException("La demande de réservation n'existe pas");
-		}
 	}
 }

@@ -1,0 +1,35 @@
+<h1>Liste des réservation à traiter</h1>
+<table [dataSource]="dataSource" class="mat-elevation-z8" mat-table matSort>
+  <ng-container matColumnDef="titre">
+    <th *matHeaderCellDef mat-header-cell> Nom de l'ouvrage</th>
+    <td *matCellDef="let element" mat-cell> {{element.oeuvreDTO.titre}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="dateDemande">
+    <th *matHeaderCellDef mat-header-cell mat-sort-header> Date de la demande</th>
+    <td *matCellDef="let element" mat-cell> {{element.dateDemande | date: 'dd/MM/yyyy HH:mm:ss'}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="idUser">
+    <th *matHeaderCellDef mat-header-cell> Identifiant de l'utilisateur</th>
+    <td *matCellDef="let element" mat-cell> {{element.idUser}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="nbOeuvres">
+    <th *matHeaderCellDef mat-header-cell> Nombres d'oeuvres disponibles</th>
+    <td *matCellDef="let element" mat-cell> {{element.oeuvreDTO.nbInstanceDisponibles}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="valider">
+    <th *matHeaderCellDef mat-header-cell> Valider</th>
+    <td *matCellDef="let element" mat-cell>
+      <button (click)="openValidation(element.idUser)" color="primary" mat-mini-fab>
+        <mat-icon>done</mat-icon>
+      </button>
+    </td>
+  </ng-container>
+
+
+  <tr *matHeaderRowDef="displayedColumns" mat-header-row></tr>
+  <tr *matRowDef="let row; columns: displayedColumns;" mat-row></tr>
+</table>
