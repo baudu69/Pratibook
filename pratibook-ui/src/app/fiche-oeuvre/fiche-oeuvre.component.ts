@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {ActivatedRoute} from "@angular/router";
+import {ActivatedRoute, RouterLink} from "@angular/router";
 import {Oeuvre} from "../liste-oeuvre/Oeuvre";
 import {FicheOeuvreService} from "./fiche-oeuvre.service";
 import {MatSnackBar, MatSnackBarModule} from "@angular/material/snack-bar";
@@ -17,7 +17,8 @@ import {UserService} from "../shared/service/user.service";
     MatSnackBarModule,
     NgIf,
     NgForOf,
-    MatButtonModule
+    MatButtonModule,
+    RouterLink
   ],
   styleUrls: ['./fiche-oeuvre.component.css']
 })
