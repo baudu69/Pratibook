@@ -1,6 +1,11 @@
 import {Routes} from "@angular/router";
+import {EmployeComponent} from "./employe.component";
 
 export const employeRoute: Routes = [
+
+  {
+    path: '', component: EmployeComponent,
+  },
   {
     path: 'reservation',
     loadComponent: () => import('./liste-reservation/liste-reservation.component').then(mod => mod.ListeReservationComponent)
@@ -20,5 +25,9 @@ export const employeRoute: Routes = [
   {
     path: 'stock/ajouter-oeuvre',
     loadComponent: () => import('./oeuvre-form/oeuvre-form.component').then(mod => mod.OeuvreFormComponent)
+  },
+  {
+    path: 'instance/add',
+    loadComponent: () => import('./add-instance/add-instance.component').then(mod => mod.AddInstanceComponent)
   }
 ]
