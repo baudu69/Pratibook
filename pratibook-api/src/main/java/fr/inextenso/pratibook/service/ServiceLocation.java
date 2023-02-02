@@ -1,5 +1,6 @@
 package fr.inextenso.pratibook.service;
 
+import fr.inextenso.pratibook.dto.EmpruntDTO;
 import fr.inextenso.pratibook.dto.EmprunterDTO;
 import fr.inextenso.pratibook.dto.RenduDTO;
 import fr.inextenso.pratibook.model.Disponibilite;
@@ -11,6 +12,7 @@ import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -60,4 +62,11 @@ public class ServiceLocation {
 		instanceOeuvre.setEtatDisponibilite(Disponibilite.DISPONIBLE);
 		instanceOeuvreRepository.save(instanceOeuvre);
 	}
+
+	public List<EmpruntDTO> empruntsUtilisateur(int userId) {
+		return this.locationRepository.findAllByIdUtilisateurOrderByDateLocationDesc(userId).stream()
+				.map(EmpruntDTO::new)
+				.toList();
+	}
+
 }
