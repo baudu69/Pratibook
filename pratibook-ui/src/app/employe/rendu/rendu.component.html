@@ -1,0 +1,19 @@
+<h1>Rendu</h1>
+<div [formGroup]="formGroup" class="form">
+  <mat-radio-group aria-label="Etat de l'oeuvre" formControlName="etat">
+    <mat-radio-button [value]="3">Besoin de réparation</mat-radio-button>
+    <mat-radio-button [value]="2">Abimé</mat-radio-button>
+    <mat-radio-button [value]="1">Bon</mat-radio-button>
+    <mat-radio-button [value]="0">Neuf</mat-radio-button>
+  </mat-radio-group>
+  <mat-form-field appearance="fill" class="example-full-width">
+    <mat-label>Code barre</mat-label>
+    <input formControlName="codeBarre" matInput type="text">
+    <button (click)="openQR()" color="primary" mat-mini-fab matSuffix>
+      <mat-icon>add_a_photo</mat-icon>
+    </button>
+  </mat-form-field>
+
+  <button (click)="validate()" [disabled]="!formGroup.valid" color="primary" mat-raised-button>Valider</button>
+</div>
+

@@ -1,6 +1,7 @@
 package fr.inextenso.pratibook.service;
 
 import fr.inextenso.pratibook.dto.EmprunterDTO;
+import fr.inextenso.pratibook.dto.RenduDTO;
 import fr.inextenso.pratibook.model.Disponibilite;
 import fr.inextenso.pratibook.model.InstanceOeuvre;
 import fr.inextenso.pratibook.model.Location;
@@ -42,6 +43,21 @@ public class ServiceLocation {
 		location.setIdUtilisateur(emprunterDTO.userID());
 		locationRepository.save(location);
 		instanceOeuvre.setEtatDisponibilite(Disponibilite.EMPRUNTE);
+		instanceOeuvreRepository.save(instanceOeuvre);
+	}
+
+	@Transactional
+	public void rendu(RenduDTO renduDTO) {
+		//Vérifier si le code barre existe
+		InstanceOeuvre instanceOeuvre = instanceOeuvreRepository.findById(renduDTO.codeBarre())
+				.orElseThrow(() -> new RuntimeException("Code barre inconnu"));
+		//Récupérer la location
+		Location location = locationRepository.findByCodeBarreAndDateRenduReel(renduDTO.codeBarre(), null)
+				.orElseThrow(() -> new RuntimeException("Livre non emprunté"));
+		location.setDateRenduReel(LocalDateTime.now());
+		location.setEtatPhysiqueRendu(renduDTO.etat());
+		locationRepository.save(location);
+		instanceOeuvre.setEtatDisponibilite(Disponibilite.DISPONIBLE);
 		instanceOeuvreRepository.save(instanceOeuvre);
 	}
 }
