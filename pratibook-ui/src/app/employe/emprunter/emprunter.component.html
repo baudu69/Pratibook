@@ -1,0 +1,30 @@
+<h1>Emprunter</h1>
+<div [formGroup]="formGroup" class="form">
+  <mat-radio-group aria-label="Etat de l'oeuvre" formControlName="etat">
+    <mat-radio-button [value]="3">Besoin de réparation</mat-radio-button>
+    <mat-radio-button [value]="2">Abimé</mat-radio-button>
+    <mat-radio-button [value]="1">Bon</mat-radio-button>
+    <mat-radio-button [value]="0">Neuf</mat-radio-button>
+  </mat-radio-group>
+  <mat-form-field appearance="fill" class="example-full-width">
+    <mat-label>Code barre</mat-label>
+    <input formControlName="codeBarre" matInput type="text">
+  </mat-form-field>
+  <mat-form-field appearance="fill" class="example-full-width">
+    <mat-label>Utilisateur</mat-label>
+    <input [matAutocomplete]="auto"
+           aria-label="Utilisateur"
+           formControlName="idUser"
+           matInput
+           placeholder="Choisissez un utilisateur"
+           type="text">
+    <mat-autocomplete #auto="matAutocomplete" autoActiveFirstOption>
+      <mat-option *ngFor="let option of filteredOptions | async" [value]="option.id">
+        {{option.nom}} {{option.prenom}} - {{option.email}}
+      </mat-option>
+    </mat-autocomplete>
+  </mat-form-field>
+
+  <button [disabled]="!formGroup.valid" color="primary" mat-raised-button>Valider</button>
+</div>
+
