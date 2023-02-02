@@ -59,6 +59,7 @@ public class WebSecurityConfig {
 				.authorizeHttpRequests()
 				.requestMatchers("/api/oeuvre/**").permitAll()
 				.requestMatchers(HttpMethod.GET, "/api/auteur/**").permitAll()
+				.requestMatchers("/api/stocks/**").hasAuthority("Employe")
 				.anyRequest().authenticated()
 				.and()
 				.exceptionHandling().authenticationEntryPoint(jwtAuthenticationEntryPoint)
