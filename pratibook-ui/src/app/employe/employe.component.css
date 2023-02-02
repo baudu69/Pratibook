@@ -1,0 +1,22 @@
+a, a:visited {
+  color: #000;
+  text-decoration: none;
+}
+
+h3 {
+  border: 1px solid #141414;
+  padding: 2em;
+  max-width: 10em;
+}
+
+h3:hover {
+  background-color: #eee;
+  border: 1px solid #000;
+}
+
+:host {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 5em;
+}
