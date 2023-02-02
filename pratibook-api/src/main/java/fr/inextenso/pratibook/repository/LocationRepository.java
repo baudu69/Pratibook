@@ -12,5 +12,6 @@ public interface LocationRepository extends JpaRepository<Location, Integer> {
 
 	Optional<Location> findByCodeBarreAndDateRenduReel(String codeBarre, LocalDateTime dateRenduReel);
 
+	List<Location> findByCodeBarreOrderByDateRenduReelDesc(String codeBarre);
 	List<Location> findAllByIdUtilisateurOrderByDateLocationDesc(Integer idUtilisateur);
 }

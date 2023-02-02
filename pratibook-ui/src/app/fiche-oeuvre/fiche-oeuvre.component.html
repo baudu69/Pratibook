@@ -19,4 +19,5 @@
   <button (click)="reserver()" *ngIf="userService.isConnected" [disabled]="oeuvre.nbInstanceDisponibles===0"
           color="primary" mat-raised-button>Réserver
   </button>
+  <app-details-instance *ngIf="userService.isEmploye" [idOeuvre]="oeuvre.idOeuvre"></app-details-instance>
 </ng-container>
