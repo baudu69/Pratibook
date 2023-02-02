@@ -14,5 +14,9 @@ export class EmprunterService {
   loadUser(): Observable<Utilisateur[]> {
     return this.http.get<Utilisateur[]>('/api/utilisateur')
   }
+
+  emprunter(codeBarre: string, idUser: number, etat: number): Observable<void> {
+    return this.http.post<void>('/api/location/emprunter', {codeBarre: codeBarre, userID: idUser, etat: etat})
+  }
 }
 

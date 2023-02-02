@@ -8,6 +8,10 @@ import {AsyncPipe, NgForOf} from "@angular/common";
 import {map, Observable, startWith, tap} from "rxjs";
 import {EmprunterService} from "./emprunter.service";
 import {MatButtonModule} from "@angular/material/button";
+import {MatSnackBar, MatSnackBarModule} from '@angular/material/snack-bar';
+import {MatIconModule} from "@angular/material/icon";
+import {MatDialog, MatDialogModule} from "@angular/material/dialog";
+import {BarcodeScannerComponent} from "../../barcode-scanner/barcode-scanner.component";
 
 export class Utilisateur {
   id!: number;
@@ -36,7 +40,10 @@ export class Utilisateur {
     AsyncPipe,
     NgForOf,
     MatButtonModule,
-    FormsModule
+    FormsModule,
+    MatSnackBarModule,
+    MatIconModule,
+    MatDialogModule
   ],
   styleUrls: ['./emprunter.component.css']
 })
@@ -54,7 +61,7 @@ export class EmprunterComponent implements OnInit {
     tap((res) => console.log(res))
   );
 
-  constructor(private emprunterService: EmprunterService) {
+  constructor(private emprunterService: EmprunterService, private snackBar: MatSnackBar, public dialog: MatDialog) {
 
   }
 
@@ -73,6 +80,20 @@ export class EmprunterComponent implements OnInit {
     const etat: number = this.formGroup.controls['etat'].value;
     const codeBarre: string = this.formGroup.controls['codeBarre'].value;
     const idUser: number = this.formGroup.controls['idUser'].value;
+    this.emprunterService.emprunter(codeBarre, idUser, etat).subscribe({
+      next: () => {
+        this.snackBar.open("Validé", 'Fermer', {duration: 500});
+        this.reset()
+      },
+      error: (err) => {
+        this.snackBar.open(err.error.message, 'Fermer', {duration: 5000});
+      }
+    })
+  }
+
+  reset() {
+    this.formGroup.controls['etat'].setValue(0);
+    this.formGroup.controls['codeBarre'].setValue('');
   }
 
   private _filter(value: string): Utilisateur[] {
@@ -85,4 +106,14 @@ export class EmprunterComponent implements OnInit {
   }
 
 
+  openQR() {
+    this.dialog.open(BarcodeScannerComponent).afterClosed().subscribe((res) => {
+      if (res) {
+        this.formGroup.controls['codeBarre'].setValue(res);
+        if (this.formGroup.valid) {
+          this.validate()
+        }
+      }
+    })
+  }
 }

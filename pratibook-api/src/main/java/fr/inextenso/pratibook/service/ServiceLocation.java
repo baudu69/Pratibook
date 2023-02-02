@@ -1,7 +1,10 @@
 package fr.inextenso.pratibook.service;
 
 import fr.inextenso.pratibook.dto.EmprunterDTO;
+import fr.inextenso.pratibook.model.Disponibilite;
+import fr.inextenso.pratibook.model.InstanceOeuvre;
 import fr.inextenso.pratibook.model.Location;
+import fr.inextenso.pratibook.repository.InstanceOeuvreRepository;
 import fr.inextenso.pratibook.repository.LocationRepository;
 import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
@@ -12,13 +15,19 @@ import java.util.Optional;
 @Service
 public class ServiceLocation {
 	private final LocationRepository locationRepository;
+	private final InstanceOeuvreRepository instanceOeuvreRepository;
 
-	public ServiceLocation(LocationRepository locationRepository) {
+	public ServiceLocation(LocationRepository locationRepository,
+	                       InstanceOeuvreRepository instanceOeuvreRepository) {
 		this.locationRepository = locationRepository;
+		this.instanceOeuvreRepository = instanceOeuvreRepository;
 	}
 
 	@Transactional
 	public void emprunter(EmprunterDTO emprunterDTO) {
+		//Check si le code barre existe
+		InstanceOeuvre instanceOeuvre = instanceOeuvreRepository.findById(emprunterDTO.codeBarre())
+				.orElseThrow(() -> new RuntimeException("Code barre inconnu"));
 		//Check si une instance existe déjà (réservation)
 		Optional<Location> loc = locationRepository.findByCodeBarreAndIdUtilisateurAndDateRenduReel(emprunterDTO.codeBarre(), emprunterDTO.userID(), null);
 		loc.ifPresent(location -> {
@@ -32,6 +41,7 @@ public class ServiceLocation {
 		location.setCodeBarre(emprunterDTO.codeBarre());
 		location.setIdUtilisateur(emprunterDTO.userID());
 		locationRepository.save(location);
-		//TODO : Etat instance de l'oeuvre à 0
+		instanceOeuvre.setEtatDisponibilite(Disponibilite.EMPRUNTE);
+		instanceOeuvreRepository.save(instanceOeuvre);
 	}
 }

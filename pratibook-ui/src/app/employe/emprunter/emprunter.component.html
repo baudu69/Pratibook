@@ -9,6 +9,9 @@
   <mat-form-field appearance="fill" class="example-full-width">
     <mat-label>Code barre</mat-label>
     <input formControlName="codeBarre" matInput type="text">
+    <button (click)="openQR()" color="primary" mat-mini-fab matSuffix>
+      <mat-icon>add_a_photo</mat-icon>
+    </button>
   </mat-form-field>
   <mat-form-field appearance="fill" class="example-full-width">
     <mat-label>Utilisateur</mat-label>
@@ -25,6 +28,5 @@
     </mat-autocomplete>
   </mat-form-field>
 
-  <button [disabled]="!formGroup.valid" color="primary" mat-raised-button>Valider</button>
+  <button (click)="validate()" [disabled]="!formGroup.valid" color="primary" mat-raised-button>Valider</button>
 </div>
-
