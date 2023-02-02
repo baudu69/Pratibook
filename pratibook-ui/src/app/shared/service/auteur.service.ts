@@ -18,8 +18,13 @@ export class AuteurService {
     return this.http.get<AuteurWithOeuvres>('/api/auteur/' + auteurId);
   }
 
-  public addAuteur(auteur: IAuteur): Observable<void> {
-    return this.http.post<void>('/api/stocks/auteur', auteur);
+  public addAuteur(nom: string, prenom: string, dateNaissance: Date | null, dateDeces: Date | null): Observable<void> {
+    return this.http.post<void>('/api/stocks/auteur', {
+      nomAuteur: nom,
+      prenomAuteur: prenom === '' ? null : prenom,
+      dateNaissanceAuteur: dateNaissance,
+      dateDecesAuteur: dateDeces,
+    });
   }
 
 }

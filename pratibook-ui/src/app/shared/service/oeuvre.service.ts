@@ -10,11 +10,11 @@ export class OeuvreService {
 
   constructor(private http: HttpClient) {}
 
-  public addOeuvre(titre: string, anneeSortie: number, isbn: string | null, auteurs: number[]): Observable<void> {
+  public addOeuvre(titre: string, anneeSortie: number, isbn: string, auteurs: number[]): Observable<void> {
     return this.http.post<void>('/api/stocks/oeuvre', {
       titre: titre,
       anneeSortie: anneeSortie,
-      isbn: isbn,
+      isbn: isbn === '' ? null : isbn,
       auteurs: auteurs,
       genres: [],
     });

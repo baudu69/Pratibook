@@ -10,6 +10,8 @@ export class EmployeComponent {
     {label: 'Réservation', url: '/employe/reservation'},
     {label: 'Emprunter', url: '/employe/emprunter'},
     {label: 'Rendu', url: '/employe/rendu'},
+    {label: 'Ajout auteur', url: '/employe/stock/ajouter-auteur'},
+    {label: 'Ajout oeuvre', url: '/employe/stock/ajouter-oeuvre'},
     {label: 'Ajout instance', url: '/employe/instance/add'},
   ]
 }

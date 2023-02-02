@@ -43,12 +43,12 @@ export class AuteurFormComponent implements OnInit {
   ngOnInit(): void {}
 
   createAuteur(): void {
-    this.auteurService.addAuteur(new Auteur(
+    this.auteurService.addAuteur(
       this.formAuteur.controls['nom'].value,
       this.formAuteur.controls['prenom'].value,
       this.formAuteur.controls['dateNaissance'].value,
       this.formAuteur.controls['dateDeces'].value
-    )).subscribe({
+    ).subscribe({
       next: () => {
         this.snackbar.open('Auteur ajouté', 'OK', {duration: 5000});
       },
