@@ -19,6 +19,14 @@ export const employeRoute: Routes = [
     loadComponent: () => import('./rendu/rendu.component').then(mod => mod.RenduComponent)
   },
   {
+    path: 'stock/ajouter-auteur',
+    loadComponent: () => import('./auteur-form/auteur-form.component').then(mod => mod.AuteurFormComponent)
+  },
+  {
+    path: 'stock/ajouter-oeuvre',
+    loadComponent: () => import('./oeuvre-form/oeuvre-form.component').then(mod => mod.OeuvreFormComponent)
+  },
+  {
     path: 'instance/add',
     loadComponent: () => import('./add-instance/add-instance.component').then(mod => mod.AddInstanceComponent)
   }

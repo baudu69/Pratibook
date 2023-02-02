@@ -9,6 +9,7 @@ import java.util.Set;
 @Table(name = "auteur")
 public class Auteur {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_auteur", nullable = false)
     private Integer id;
 
