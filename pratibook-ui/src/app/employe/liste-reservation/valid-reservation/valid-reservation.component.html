@@ -1,0 +1,8 @@
+<ng-form class="example-form">
+  <mat-form-field class="example-full-width">
+    <mat-label>Code Barre</mat-label>
+    <input [formControl]="codeBarre" matInput placeholder="Ex. 12345-6789-1234">
+  </mat-form-field>
+  <button color="accent" mat-raised-button>Afficher le lecteur</button>
+  <button (click)="valider()" [disabled]="!codeBarre.valid" color="primary" mat-raised-button>Valider</button>
+</ng-form>

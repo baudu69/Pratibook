@@ -1,21 +1,21 @@
 package fr.inextenso.pratibook.model;
 
-import javax.persistence.*;
-import java.time.LocalDate;
+import jakarta.persistence.*;
+
 import java.util.Set;
 
 @Entity
 @Table(name = "oeuvre")
 public class Oeuvre {
     @Id
-    @Column(name = "id_oeuvre", nullable = false, length = 50)
-    private String id;
+    @Column(name = "id_oeuvre", nullable = false)
+    private Integer id;
 
     @Column(name = "titre", length = 50)
     private String titre;
 
-    @Column(name = "date_sortie")
-    private LocalDate dateSortie;
+    @Column(name = "annee_sortie")
+    private Short anneeSortie;
 
     @Column(name = "isbn", length = 13)
     private String isbn;
@@ -35,12 +35,15 @@ public class Oeuvre {
             inverseJoinColumns = {@JoinColumn(name = "id_genre")}
     )
     private Set<Genre> genres;
+    
+    @OneToMany(mappedBy = "oeuvre", fetch = FetchType.LAZY)
+    private Set<InstanceOeuvre> instances;
 
-    public String getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -52,12 +55,12 @@ public class Oeuvre {
         this.titre = titre;
     }
 
-    public LocalDate getDateSortie() {
-        return dateSortie;
+    public Short getAnneeSortie() {
+        return anneeSortie;
     }
 
-    public void setDateSortie(LocalDate dateSortie) {
-        this.dateSortie = dateSortie;
+    public void setAnneeSortie(Short anneeSortie) {
+        this.anneeSortie = anneeSortie;
     }
 
     public String getIsbn() {
@@ -83,4 +86,13 @@ public class Oeuvre {
     public void setGenres(Set<Genre> genres) {
         this.genres = genres;
     }
+
+    public Set<InstanceOeuvre> getInstances() {
+        return instances;
+    }
+
+    public void setInstances(Set<InstanceOeuvre> instances) {
+        this.instances = instances;
+    }
+
 }

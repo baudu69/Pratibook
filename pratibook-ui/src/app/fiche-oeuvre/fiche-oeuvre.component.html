@@ -1,0 +1,22 @@
+<ng-container *ngIf="oeuvre">
+  <h1>{{oeuvre.titre}} ({{oeuvre.anneeSortie}})</h1>
+  <p>Ecrit par :
+    <ng-container *ngFor="let auteur of oeuvre.auteurs">
+      {{auteur.nomAuteur}} {{auteur.prenomAuteur}},
+    </ng-container>
+  </p>
+  <p>Genre(s) :
+    <ng-container *ngFor="let genre of oeuvre.genres">
+      {{genre.nomGenre}},
+    </ng-container>
+  </p>
+  <p *ngIf="oeuvre.isbn">
+    ISBN : {{oeuvre.isbn}}
+  </p>
+  <p>
+    Exemplaires disponibles : {{oeuvre.nbInstanceDisponibles}}
+  </p>
+  <button (click)="reserver()" *ngIf="userService.isConnected" [disabled]="oeuvre.nbInstanceDisponibles===0"
+          color="primary" mat-raised-button>Réserver
+  </button>
+</ng-container>

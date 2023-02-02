@@ -4,10 +4,11 @@ import fr.inextenso.pratibook.user.JwtUserDetailService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
-import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
+import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityCustomizer;
@@ -18,7 +19,7 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 
 @Configuration
 @EnableWebSecurity
-@EnableGlobalMethodSecurity(prePostEnabled = true)
+@EnableMethodSecurity
 public class WebSecurityConfig {
 
 	private final JwtAuthenticationEntryPoint jwtAuthenticationEntryPoint;
@@ -42,7 +43,7 @@ public class WebSecurityConfig {
 
 	@Bean
 	public WebSecurityCustomizer webSecurityCustomizer() {
-		return (web) -> web.ignoring().antMatchers("/api/auth/**");
+		return (web) -> web.ignoring().requestMatchers("/api/auth/**", "/error");
 	}
 
 	@Bean
@@ -53,11 +54,13 @@ public class WebSecurityConfig {
 	@Bean
 	protected SecurityFilterChain filterChain(HttpSecurity httpSecurity) throws Exception {
 		return httpSecurity
-				.authorizeRequests()
-				.antMatchers("/api/oeuvre").permitAll()
-				.antMatchers("/api/auteur").permitAll()
-				.antMatchers("/api/**").authenticated()
-				.anyRequest().permitAll()
+				.csrf()
+				.disable()
+				.authorizeHttpRequests()
+				.requestMatchers("/api/oeuvre/**").permitAll()
+				.requestMatchers(HttpMethod.GET, "/api/auteur/**").permitAll()
+				.requestMatchers("/api/location/**").hasAuthority("Employe")
+				.anyRequest().authenticated()
 				.and()
 				.exceptionHandling().authenticationEntryPoint(jwtAuthenticationEntryPoint)
 				.and()

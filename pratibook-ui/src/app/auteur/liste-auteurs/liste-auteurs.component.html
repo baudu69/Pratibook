@@ -1,21 +1,16 @@
 <table mat-table [dataSource]="auteurs">
 
-  <mat-text-column name="nomAuteur" headerText="Nom"></mat-text-column>
-  <mat-text-column name="prenomAuteur" headerText="Prénom"></mat-text-column>
-
-  <ng-container matColumnDef="boutonFiche">
-    <th mat-header-cell *matHeaderCellDef></th>
-    <td mat-cell *matCellDef>
-      <!-- TODO: lien vers la fiche -->
-      <button mat-raised-button>Voir la fiche</button>
-    </td>
+  <ng-container matColumnDef="nomAuteur">
+    <th mat-header-cell *matHeaderCellDef>Nom</th>
+    <td mat-cell *matCellDef="let auteur">{{auteur.prenomAuteur}} {{auteur.nomAuteur}}</td>
   </ng-container>
 
-  <ng-container matColumnDef="boutonOeuvres">
+  <ng-container matColumnDef="boutonDetails">
     <th mat-header-cell *matHeaderCellDef></th>
-    <td mat-cell *matCellDef>
-      <!-- TODO: lien vers la liste des oeuvres -->
-      <button mat-raised-button>Voir les œuvres</button>
+    <td mat-cell *matCellDef="let auteur">
+      <a [routerLink]="['/fiche-auteur', auteur.idAuteur]">
+        <button mat-raised-button>Plus de détail</button>
+      </a>
     </td>
   </ng-container>
 
