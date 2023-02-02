@@ -1,9 +1,9 @@
 <ng-container *ngIf="oeuvre">
   <h1>{{oeuvre.titre}} ({{oeuvre.anneeSortie}})</h1>
   <p>Ecrit par :
-    <ng-container *ngFor="let auteur of oeuvre.auteurs" routerLink="/fiche-auteur/{{auteur.idAuteur}}">
+    <span *ngFor="let auteur of oeuvre.auteurs" routerLink="/fiche-auteur/{{auteur.idAuteur}}">
       {{auteur.nomAuteur}} {{auteur.prenomAuteur}},
-    </ng-container>
+    </span>
   </p>
   <p>Genre(s) :
     <ng-container *ngFor="let genre of oeuvre.genres">
