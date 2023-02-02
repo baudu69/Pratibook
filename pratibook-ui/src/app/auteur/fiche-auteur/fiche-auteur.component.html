@@ -1,0 +1,15 @@
+<h1>{{auteur?.prenomAuteur}} {{auteur?.nomAuteur}}</h1>
+
+<div id="auteur">
+  <p *ngIf="auteur?.dateNaissanceAuteur">Date de naissance : {{auteur?.dateNaissanceAuteur | date:'longDate':undefined:'fr-FR' }}</p>
+  <p *ngIf="auteur?.dateDecesAuteur">Date de décès : {{auteur?.dateDecesAuteur | date:'longDate':undefined:'fr-FR'}}</p>
+</div>
+
+<div id="oeuvres">
+  <a *ngFor="let oeuvre of auteur?.oeuvres"
+       class="oeuvre" [routerLink]="['/oeuvres/oeuvre', oeuvre.idOeuvre]">
+    <span class="titre">{{oeuvre.titre}}</span>
+    <span>{{oeuvre.anneeSortie}}</span>
+    <span><ng-container *ngFor="let genre of oeuvre.genres">{{genre.nomGenre}} </ng-container></span>
+  </a>
+</div>

@@ -12,8 +12,7 @@ export class ListeAuteursComponent implements OnInit {
   auteurs: IAuteur[] = [];
   readonly displayedColumns: string[] = [
     'nomAuteur',
-    'boutonFiche',
-    'boutonOeuvres',
+    'boutonDetails',
   ];
 
   constructor(

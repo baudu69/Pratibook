@@ -5,22 +5,11 @@
     <td mat-cell *matCellDef="let auteur">{{auteur.prenomAuteur}} {{auteur.nomAuteur}}</td>
   </ng-container>
 
-  <ng-container matColumnDef="boutonFiche">
+  <ng-container matColumnDef="boutonDetails">
     <th mat-header-cell *matHeaderCellDef></th>
-    <td mat-cell *matCellDef>
-      <!-- TODO: lien vers la fiche -->
-      <a [routerLink]="[]">
-        <button mat-raised-button>Voir la fiche</button>
-      </a>
-    </td>
-  </ng-container>
-
-  <ng-container matColumnDef="boutonOeuvres">
-    <th mat-header-cell *matHeaderCellDef></th>
-    <td mat-cell *matCellDef>
-      <!-- TODO: lien vers la liste des oeuvres -->
-      <a [routerLink]="[]">
-        <button mat-raised-button>Voir les œuvres</button>
+    <td mat-cell *matCellDef="let auteur">
+      <a [routerLink]="['/fiche-auteur', auteur.idAuteur]">
+        <button mat-raised-button>Plus de détail</button>
       </a>
     </td>
   </ng-container>
