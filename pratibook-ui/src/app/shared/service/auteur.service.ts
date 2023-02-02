@@ -1,4 +1,4 @@
-import {HttpClient} from "@angular/common/http";
+import {HttpClient, HttpResponse} from "@angular/common/http";
 import {Injectable} from '@angular/core';
 import {Observable} from "rxjs";
 import {AuteurWithOeuvres, IAuteur} from "../model/iauteur";
@@ -16,6 +16,15 @@ export class AuteurService {
 
   public getAuteurWithOeuvres(auteurId: number): Observable<AuteurWithOeuvres> {
     return this.http.get<AuteurWithOeuvres>('/api/auteur/' + auteurId);
+  }
+
+  public addAuteur(nom: string, prenom: string, dateNaissance: Date | null, dateDeces: Date | null): Observable<void> {
+    return this.http.post<void>('/api/stocks/auteur', {
+      nomAuteur: nom,
+      prenomAuteur: prenom === '' ? null : prenom,
+      dateNaissanceAuteur: dateNaissance,
+      dateDecesAuteur: dateDeces,
+    });
   }
 
 }

@@ -1,0 +1,34 @@
+<form (ngSubmit)="createAuteur()"
+      [formGroup]="formAuteur"
+      id="formAuteur">
+
+  <mat-form-field appearance="fill">
+    <mat-label>Nom</mat-label>
+    <input formControlName="nom" matInput/>
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Prénom</mat-label>
+    <input formControlName="prenom" matInput/>
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Date de naissance</mat-label>
+    <input formControlName="dateNaissance" matInput [matDatepicker]="pickerNaissance"/>
+    <mat-datepicker-toggle matSuffix [for]="pickerNaissance"></mat-datepicker-toggle>
+    <mat-datepicker #pickerNaissance></mat-datepicker>
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Date de décès</mat-label>
+    <input formControlName="dateDeces" matInput [matDatepicker]="pickerDeces"/>
+    <mat-datepicker-toggle matSuffix [for]="pickerDeces"></mat-datepicker-toggle>
+    <mat-datepicker #pickerDeces></mat-datepicker>
+  </mat-form-field>
+
+  <button [disabled]="formAuteur.invalid"
+          mat-raised-button color="primary">
+    Ajouter l’auteur
+  </button>
+
+</form>
