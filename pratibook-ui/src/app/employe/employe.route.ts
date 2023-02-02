@@ -8,5 +8,9 @@ export const employeRoute: Routes = [
   {
     path: 'emprunter',
     loadComponent: () => import('./emprunter/emprunter.component').then(mod => mod.EmprunterComponent)
+  },
+  {
+    path: 'rendu',
+    loadComponent: () => import('./rendu/rendu.component').then(mod => mod.RenduComponent)
   }
 ]
