@@ -2,9 +2,10 @@
   <div id="left">
     <a routerLink="/">Accueil</a>
     <a routerLink="/auteurs">Auteurs</a>
-    <a *ngIf="userService.isEmploye" routerLink="/employe/reservation">Réservations</a>
-    <a *ngIf="userService.isEmploye" routerLink="/employe/emprunter">Emprunter</a>
-    <a *ngIf="userService.isEmploye" routerLink="/employe/rendu">Rendu</a>
+    <!--    <a *ngIf="userService.isEmploye" routerLink="/employe/reservation">Réservations</a>-->
+    <!--    <a *ngIf="userService.isEmploye" routerLink="/employe/emprunter">Emprunter</a>-->
+    <!--    <a *ngIf="userService.isEmploye" routerLink="/employe/rendu">Rendu</a>-->
+    <a *ngIf="userService.isEmploye" routerLink="/employe">Employé</a>
   </div>
   <div id="right">
     <a *ngIf="!userService.isConnected" routerLink="/signUp">Inscription</a>

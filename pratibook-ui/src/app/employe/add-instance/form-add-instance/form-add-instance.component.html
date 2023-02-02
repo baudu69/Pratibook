@@ -1,0 +1,10 @@
+<h1>Ajout d'une instance à l'oeuvre : {{oeuvre.titre}}</h1>
+<mat-form-field appearance="fill">
+  <mat-label>Ajouter un code barre</mat-label>
+  <input [formControl]="codeBarre" matInput placeholder="000-000-000">
+  <button (click)="openQR()" mat-mini-fab matSuffix>
+    <mat-icon>add_a_photo</mat-icon>
+  </button>
+</mat-form-field>
+<span>{{message}}</span>
+<button (click)="valider()" [disabled]="codeBarre.invalid" color="primary" mat-raised-button>Valider</button>
