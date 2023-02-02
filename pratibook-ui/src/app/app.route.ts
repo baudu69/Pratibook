@@ -15,6 +15,10 @@ export const appRoutes: Routes = [
     loadChildren: () => import('./auteur/fiche-auteur/fiche-auteur.module').then(mod => mod.FicheAuteurModule)
   },
   {
+    path: 'mes-emprunts',
+    loadComponent: () => import('./liste-emprunts-utilisateur/liste-emprunts-utilisateur.component').then(mod => mod.ListeEmpruntsUtilisateurComponent)
+  },
+  {
     path: 'oeuvres',
     loadChildren: () => import('./liste-oeuvre/liste-oeuvre.module').then(mod => mod.ListeOeuvreModule)
   },
