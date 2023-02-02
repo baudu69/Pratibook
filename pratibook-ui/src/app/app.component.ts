@@ -8,7 +8,7 @@ import localeFr from '@angular/common/locales/fr'
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
-  title = 'pratibook-ui';
+  title = 'Pratibook';
 
   ngOnInit(): void {
     registerLocaleData(localeFr, 'fr-FR');
