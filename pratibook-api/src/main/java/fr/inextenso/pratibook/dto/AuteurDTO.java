@@ -6,7 +6,7 @@ import java.util.Set;
 import fr.inextenso.pratibook.model.Auteur;
 
 public record AuteurDTO(
-		int idAuteur,
+		Integer idAuteur,
 		String nomAuteur,
 		String prenomAuteur,
 		LocalDate dateNaissanceAuteur,

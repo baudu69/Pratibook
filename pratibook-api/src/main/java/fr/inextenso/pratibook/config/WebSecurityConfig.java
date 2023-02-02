@@ -60,6 +60,7 @@ public class WebSecurityConfig {
 				.requestMatchers("/api/oeuvre/**").permitAll()
 				.requestMatchers(HttpMethod.GET, "/api/auteur/**").permitAll()
 				.requestMatchers("/api/location/**").hasAuthority("Employe")
+				.requestMatchers("/api/stocks/**").hasAuthority("Employe")
 				.requestMatchers("/api/**").authenticated()
 				.anyRequest().permitAll()
 				.and()
