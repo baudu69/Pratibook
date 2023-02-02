@@ -6,6 +6,7 @@ import {MatSnackBar, MatSnackBarModule} from "@angular/material/snack-bar";
 import {AsyncPipe, NgForOf, NgIf} from "@angular/common";
 import {MatButtonModule} from "@angular/material/button";
 import {UserService} from "../shared/service/user.service";
+import {DetailsInstanceComponent} from "./details-instance/details-instance.component";
 
 
 @Component({
@@ -18,7 +19,8 @@ import {UserService} from "../shared/service/user.service";
     NgIf,
     NgForOf,
     MatButtonModule,
-    RouterLink
+    RouterLink,
+    DetailsInstanceComponent
   ],
   styleUrls: ['./fiche-oeuvre.component.css']
 })

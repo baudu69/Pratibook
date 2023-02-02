@@ -1,6 +1,8 @@
 package fr.inextenso.pratibook.ressource;
 
+import fr.inextenso.pratibook.dto.InstanceDTO;
 import fr.inextenso.pratibook.dto.OeuvreDTO;
+import fr.inextenso.pratibook.service.ServiceInstanceOeuvre;
 import fr.inextenso.pratibook.service.ServiceOeuvre;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -18,9 +20,11 @@ import java.util.NoSuchElementException;
 public class OeuvreController {
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
     private final ServiceOeuvre serviceOeuvre;
+    private final ServiceInstanceOeuvre serviceInstanceOeuvre;
 
-    public OeuvreController(ServiceOeuvre serviceOeuvre) {
+    public OeuvreController(ServiceOeuvre serviceOeuvre, ServiceInstanceOeuvre serviceInstanceOeuvre) {
         this.serviceOeuvre = serviceOeuvre;
+        this.serviceInstanceOeuvre = serviceInstanceOeuvre;
     }
 
     @GetMapping
@@ -34,6 +38,17 @@ public class OeuvreController {
         logger.info("REST GET /api/oeuvre/{}", idOeuvre);
         try {
             return ResponseEntity.ok(serviceOeuvre.findById(idOeuvre));
+        } catch (NoSuchElementException e) {
+            logger.warn("Oeuvre {} not found", idOeuvre);
+            return ResponseEntity.notFound().build();
+        }
+    }
+
+    @GetMapping("/{idOeuvre}/instances")
+    public ResponseEntity<List<InstanceDTO>> getAllInstancesOfOeuvre(@PathVariable Integer idOeuvre) {
+        logger.info("REST GET /api/oeuvre/{}/instances", idOeuvre);
+        try {
+            return ResponseEntity.ok(serviceInstanceOeuvre.getAllInstancesOfOeuvre(idOeuvre));
         } catch (NoSuchElementException e) {
             logger.warn("Oeuvre {} not found", idOeuvre);
             return ResponseEntity.notFound().build();
