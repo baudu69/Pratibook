@@ -2,7 +2,7 @@
   <h1>{{oeuvre.titre}} ({{oeuvre.anneeSortie}})</h1>
   <p>Ecrit par :
     <ng-container *ngFor="let auteur of oeuvre.auteurs">
-      {{auteur.nomAuteur}} {{auteur.prenomAuteur}},
+      {{auteur.prenomAuteur}} {{auteur.nomAuteur}},
     </ng-container>
   </p>
   <p>Genre(s) :

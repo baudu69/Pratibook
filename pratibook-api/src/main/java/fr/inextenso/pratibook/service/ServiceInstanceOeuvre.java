@@ -5,7 +5,6 @@ import fr.inextenso.pratibook.exception.BarcodeAlreadyUsedException;
 import fr.inextenso.pratibook.exception.NotFoundException;
 import fr.inextenso.pratibook.model.Disponibilite;
 import fr.inextenso.pratibook.model.InstanceOeuvre;
-import fr.inextenso.pratibook.model.Oeuvre;
 import fr.inextenso.pratibook.repository.InstanceOeuvreRepository;
 import fr.inextenso.pratibook.repository.OeuvreRepository;
 import org.springframework.stereotype.Service;
@@ -28,14 +27,13 @@ public class ServiceInstanceOeuvre {
         Objects.requireNonNull(dto.oeuvreId());
 
         if (this.instanceOeuvreRepository.existsById(dto.codeBarre())) throw new BarcodeAlreadyUsedException();
+        if (!this.oeuvreRepository.existsById(dto.oeuvreId())) throw new NotFoundException();
 
-        final Oeuvre oeuvre = this.oeuvreRepository.findById(dto.oeuvreId())
-                .orElseThrow(() -> new NotFoundException("Oeuvre " + dto.oeuvreId()));
 
         final InstanceOeuvre instanceOeuvre = new InstanceOeuvre();
 
         instanceOeuvre.setCodeBarre(dto.codeBarre());
-        instanceOeuvre.setOeuvre(oeuvre);
+        instanceOeuvre.setIdOeuvre(dto.oeuvreId());
         instanceOeuvre.setEtatDisponibilite(Disponibilite.DISPONIBLE);
 
         this.instanceOeuvreRepository.save(instanceOeuvre);
