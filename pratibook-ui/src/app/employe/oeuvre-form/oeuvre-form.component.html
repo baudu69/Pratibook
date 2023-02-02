@@ -1,0 +1,33 @@
+<form (ngSubmit)="createOeuvre()"
+      [formGroup]="formOeuvre"
+      id="formOeuvre">
+
+  <mat-form-field appearance="fill">
+    <mat-label>Titre</mat-label>
+    <input formControlName="titre" matInput/>
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Année d’édition / de sortie</mat-label>
+    <input formControlName="anneeSortie" type="number" matInput/>
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>ISBN</mat-label>
+    <input formControlName="isbn" matInput/>
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-select multiple formControlName="auteurs">
+      <mat-option *ngFor="let auteur of auteurs" [value]="auteur.idAuteur">
+        {{auteur.prenomAuteur}} {{auteur.nomAuteur}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <button [disabled]="formOeuvre.invalid"
+          mat-raised-button color="primary">
+    Ajouter l’oeuvre
+  </button>
+
+</form>
