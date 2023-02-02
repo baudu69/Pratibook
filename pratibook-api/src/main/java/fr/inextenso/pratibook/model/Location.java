@@ -32,10 +32,12 @@ public class Location {
 	private LocalDate dateRenduTheorique;
 
 	@Column(name = "etat_physique_location")
-	private Integer etatPhysiqueLocation;
+	@Enumerated(EnumType.ORDINAL)
+	private Etat etatPhysiqueLocation;
 
 	@Column(name = "etat_physique_rendu")
-	private Integer etatPhysiqueRendu;
+	@Enumerated(EnumType.ORDINAL)
+	private Etat etatPhysiqueRendu;
 
 	@Column(name = "date_rendu_reel")
 	private LocalDateTime dateRenduReel;
@@ -96,19 +98,19 @@ public class Location {
 		this.dateRenduTheorique = dateRenduTheorique;
 	}
 
-	public Integer getEtatPhysiqueLocation() {
+	public Etat getEtatPhysiqueLocation() {
 		return etatPhysiqueLocation;
 	}
 
-	public void setEtatPhysiqueLocation(Integer etatPhysiqueLocation) {
+	public void setEtatPhysiqueLocation(Etat etatPhysiqueLocation) {
 		this.etatPhysiqueLocation = etatPhysiqueLocation;
 	}
 
-	public Integer getEtatPhysiqueRendu() {
+	public Etat getEtatPhysiqueRendu() {
 		return etatPhysiqueRendu;
 	}
 
-	public void setEtatPhysiqueRendu(Integer etatPhysiqueRendu) {
+	public void setEtatPhysiqueRendu(Etat etatPhysiqueRendu) {
 		this.etatPhysiqueRendu = etatPhysiqueRendu;
 	}
 
