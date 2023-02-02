@@ -4,7 +4,9 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import fr.inextenso.pratibook.dto.AuteurDTO;
+import fr.inextenso.pratibook.dto.AuteurWithOeuvresDTO;
 import fr.inextenso.pratibook.dto.GenreOeuvreDTO;
+import fr.inextenso.pratibook.exception.NotFoundException;
 import fr.inextenso.pratibook.repository.AuteurRepository;
 import org.springframework.stereotype.Service;
 
@@ -25,6 +27,12 @@ public class ServiceAuteur {
 						.map(GenreOeuvreDTO::new)
 						.collect(Collectors.toSet())))
 				.toList();
+	}
+
+	public AuteurWithOeuvresDTO getAuteurWithOeuvres(Integer id) {
+		return this.auteurRepository.findById(id)
+				.map(AuteurWithOeuvresDTO::new)
+				.orElseThrow(NotFoundException::new);
 	}
 
 }
