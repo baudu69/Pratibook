@@ -1,0 +1,35 @@
+<table [dataSource]="instances" class="mat-elevation-z8" mat-table>
+
+  <ng-container matColumnDef="codeBarre">
+    <th *matHeaderCellDef mat-header-cell> Code Barre</th>
+    <td *matCellDef="let element" mat-cell> {{element.codeBarre}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="etat">
+    <th *matHeaderCellDef mat-header-cell> Etat</th>
+    <td *matCellDef="let element" mat-cell> {{element.etat || 'NEUF'}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="disponibilite">
+    <th *matHeaderCellDef mat-header-cell> Disponibilité</th>
+    <td *matCellDef="let element" mat-cell> {{element.disponibilite || ''}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="nomReserveur">
+    <th *matHeaderCellDef mat-header-cell> Nom réserveur</th>
+    <td *matCellDef="let element" mat-cell> {{element.nomReserveur || ''}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="prenomReserveur">
+    <th *matHeaderCellDef mat-header-cell> Prénom réserveur</th>
+    <td *matCellDef="let element" mat-cell> {{element.prenomReserveur || ''}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="dateRenduTheorique">
+    <th *matHeaderCellDef mat-header-cell> Date de rendu théorique</th>
+    <td *matCellDef="let element" mat-cell> {{(element.dateRenduTheorique|date: 'dd/MM/yyyy') || ''}} </td>
+  </ng-container>
+
+  <tr *matHeaderRowDef="displayedColumns" mat-header-row></tr>
+  <tr *matRowDef="let row; columns: displayedColumns;" mat-row></tr>
+</table>
