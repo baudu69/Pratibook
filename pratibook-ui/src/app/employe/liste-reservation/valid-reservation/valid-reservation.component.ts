@@ -3,9 +3,11 @@ import {MatFormFieldModule} from "@angular/material/form-field";
 import {MatInputModule} from "@angular/material/input";
 import {MatButtonModule} from "@angular/material/button";
 import {FormControl, FormsModule, ReactiveFormsModule, Validators} from "@angular/forms";
-import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material/dialog";
+import {MAT_DIALOG_DATA, MatDialog, MatDialogModule, MatDialogRef} from "@angular/material/dialog";
 import {ListeReservationService} from "../liste-reservation.service";
 import {MatSnackBar, MatSnackBarModule} from "@angular/material/snack-bar";
+import {MatIconModule} from "@angular/material/icon";
+import {BarcodeScannerComponent} from "../../../barcode-scanner/barcode-scanner.component";
 
 @Component({
   selector: 'app-valid-reservation',
@@ -17,7 +19,9 @@ import {MatSnackBar, MatSnackBarModule} from "@angular/material/snack-bar";
     MatButtonModule,
     FormsModule,
     MatSnackBarModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatIconModule,
+    MatDialogModule
   ],
   styleUrls: ['./valid-reservation.component.css']
 })
@@ -28,7 +32,8 @@ export class ValidReservationComponent {
     @Inject(MAT_DIALOG_DATA) public data: { idUser: number },
     private listeReservationService: ListeReservationService,
     private dialogRef: MatDialogRef<ValidReservationComponent>,
-    private snackBar: MatSnackBar
+    private snackBar: MatSnackBar,
+    private dialog: MatDialog
   ) {
   }
 
@@ -48,4 +53,11 @@ export class ValidReservationComponent {
       }
     });
   }
+
+  openQR() {
+    this.dialog.open(BarcodeScannerComponent).afterClosed().subscribe((codeBarre: string) => {
+      this.codeBarre.setValue(codeBarre);
+    })
+  }
+
 }
