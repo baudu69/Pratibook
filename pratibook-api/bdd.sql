@@ -1,7 +1,7 @@
 CREATE TABLE auteur
 (
     id_auteur             INT         NOT NULL
-        PRIMARY KEY,
+        PRIMARY KEY AUTO_INCREMENT,
     nom_auteur            VARCHAR(50) NULL,
     prenom_auteur         VARCHAR(50) NULL,
     date_naissance_auteur DATE        NULL,
@@ -11,14 +11,14 @@ CREATE TABLE auteur
 CREATE TABLE genre
 (
     id_genre  INT         NOT NULL
-        PRIMARY KEY,
+        PRIMARY KEY AUTO_INCREMENT,
     nom_genre VARCHAR(50) NULL
 );
 
 CREATE TABLE oeuvre
 (
     id_oeuvre    INT         NOT NULL
-        PRIMARY KEY,
+        PRIMARY KEY AUTO_INCREMENT,
     titre        VARCHAR(50) NULL,
     annee_sortie SMALLINT    NULL,
     isbn         VARCHAR(13) NULL
@@ -97,7 +97,7 @@ CREATE TABLE demande_reservation
 CREATE TABLE location
 (
     id_location            INT         NOT NULL
-        PRIMARY KEY,
+        PRIMARY KEY AUTO_INCREMENT,
     code_barre             VARCHAR(50) NOT NULL,
     id_employe             INT         NULL,
     id_utilisateur         INT         NOT NULL,
