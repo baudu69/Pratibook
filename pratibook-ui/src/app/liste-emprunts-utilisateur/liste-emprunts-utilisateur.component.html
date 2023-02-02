@@ -1,0 +1,45 @@
+<h1>Mes emprunts</h1>
+
+<table mat-table
+       [dataSource]="dataSource"
+       class="mat-elevation-z8">
+
+  <ng-container matColumnDef="codeBarre">
+    <th *matHeaderCellDef mat-header-cell>Code barre</th>
+    <td *matCellDef="let e" mat-cell>{{e.codeBarre}}</td>
+  </ng-container>
+
+  <ng-container matColumnDef="dateReservation">
+    <th *matHeaderCellDef mat-header-cell>Date de la réservation</th>
+    <td *matCellDef="let e" mat-cell>{{e.dateReservation ? (e.dateReservation|date) : '-'}}</td>
+  </ng-container>
+
+  <ng-container matColumnDef="dateLocation">
+    <th *matHeaderCellDef mat-header-cell>Date de l’emprunt</th>
+    <td *matCellDef="let e" mat-cell>{{e.dateLocation ? (e.dateLocation|date) : '-'}}</td>
+  </ng-container>
+
+  <ng-container matColumnDef="dateRenduTheorique">
+    <th *matHeaderCellDef mat-header-cell>Date de rendu théorique</th>
+    <td *matCellDef="let e" mat-cell>{{e.dateRenduTheorique ? (e.dateRenduTheorique|date) : '-'}}</td>
+  </ng-container>
+
+  <ng-container matColumnDef="dateRenduReel">
+    <th *matHeaderCellDef mat-header-cell>Date de rendu effectif</th>
+    <td *matCellDef="let e" mat-cell>{{e.dateRenduReel ? (e.dateRenduReel|date) : '-'}}</td>
+  </ng-container>
+
+  <ng-container matColumnDef="etatPhysiqueLocation">
+    <th *matHeaderCellDef mat-header-cell>État lors de l’emprunt</th>
+    <td *matCellDef="let e" mat-cell>{{etatToString(e.etatPhysiqueLocation)}}</td>
+  </ng-container>
+
+  <ng-container matColumnDef="etatPhysiqueRendu">
+    <th *matHeaderCellDef mat-header-cell>Date lors du rendu</th>
+    <td *matCellDef="let e" mat-cell>{{etatToString(e.etatPhysiqueRendu)}}</td>
+  </ng-container>
+
+  <tr *matHeaderRowDef="displayedColumns" mat-header-row></tr>
+  <tr *matRowDef="let row; columns: displayedColumns" mat-row></tr>
+
+</table>
