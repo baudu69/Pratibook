@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {UserService} from "../../shared/service/user.service";
 import {Router} from "@angular/router";
@@ -11,8 +11,8 @@ import {Router} from "@angular/router";
 export class SignInComponent implements OnInit {
 
   formLogin: FormGroup = new FormGroup<any>({
-    email: new FormControl<string>('baudu2@test.com', [Validators.required, Validators.email]),
-    password: new FormControl<string>('testPassword', [Validators.required])
+    email: new FormControl<string>('', [Validators.required, Validators.email]),
+    password: new FormControl<string>('', [Validators.required])
   })
 
   constructor(private userService: UserService, private route: Router) { }
