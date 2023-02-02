@@ -12,5 +12,9 @@ export const employeRoute: Routes = [
   {
     path: 'rendu',
     loadComponent: () => import('./rendu/rendu.component').then(mod => mod.RenduComponent)
+  },
+  {
+    path: 'stock/ajouter-auteur',
+    loadComponent: () => import('./auteur-form/auteur-form.component').then(mod => mod.AuteurFormComponent)
   }
 ]
