@@ -34,6 +34,9 @@ class ServiceLocationTest {
 
 	@Test
 	void emprunter() {
+		InstanceOeuvre instanceOeuvre = new InstanceOeuvre();
+		instanceOeuvre.setEtatDisponibilite(Disponibilite.DISPONIBLE);
+		when(instanceOeuvreRepository.findById("codeBarre")).thenReturn(Optional.of(instanceOeuvre));
 		Location alreadyLocated = new Location();
 		alreadyLocated.setDateLocation(LocalDateTime.now());
 		when(locationRepository.findByCodeBarreAndIdUtilisateurAndDateRenduReel("codeBarre", 1, null)).thenReturn(Optional.of(alreadyLocated));
